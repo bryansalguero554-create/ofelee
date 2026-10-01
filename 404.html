@@ -6,7 +6,7 @@
   <!-- Pagina autonoma: stile e script sono interni (autorizzati per impronta
        nella Content Security Policy) perché la 404 può essere servita a
        qualsiasi profondità di percorso, dove i link relativi non funzionano. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-f3Fd+GfYGqARiHkv0Qtm1TAbMPvxc7vy8BVyTqFK0kM='; style-src 'self' 'sha256-7vh2T+I5FBb/bbHvleWuIoTACLUHQDZBkM7l4BNCIb0='; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ue0ej5XgWjgdaCwJouHY08vqNOchpTuZd2IyQMHElmA='; style-src 'self' 'sha256-7vh2T+I5FBb/bbHvleWuIoTACLUHQDZBkM7l4BNCIb0='; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#4b5a26">
@@ -110,9 +110,10 @@ footer a{color:var(--olive);font-weight:600;text-decoration:none}
 
   <script>
 (function(){
-  // La home è nella cartella del sito: su GitHub Pages "/progetto-2/", altrove "/".
-  var m = location.pathname.match(/^\/progetto-2(\/|$)/);
-  var base = m ? "/progetto-2/" : "/";
+  // Su GitHub Pages il sito sta nella cartella del repository (es. "/ofelee/"),
+  // su un dominio proprio alla radice "/". Così funziona anche se il nome cambia.
+  var first = location.pathname.split("/")[1];
+  var base = /\.github\.io$/.test(location.hostname) && first ? "/" + first + "/" : "/";
   document.querySelectorAll("[data-home]").forEach(function(a){ a.href = base; });
   document.querySelectorAll("[data-home-hash]").forEach(function(a){ a.href = base + "#" + a.getAttribute("data-home-hash"); });
   var fonts = document.createElement("link");

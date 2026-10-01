@@ -2,7 +2,7 @@
 # Applicate automaticamente da Netlify e Cloudflare Pages (GitHub Pages le ignora:
 # lì valgono le protezioni inserite in index.html).
 /*
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-f3Fd+GfYGqARiHkv0Qtm1TAbMPvxc7vy8BVyTqFK0kM='; style-src 'self' 'sha256-7vh2T+I5FBb/bbHvleWuIoTACLUHQDZBkM7l4BNCIb0='; img-src 'self' data: https://images.unsplash.com; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; media-src 'none'; object-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-ue0ej5XgWjgdaCwJouHY08vqNOchpTuZd2IyQMHElmA='; style-src 'self' 'sha256-7vh2T+I5FBb/bbHvleWuIoTACLUHQDZBkM7l4BNCIb0='; img-src 'self' data: https://images.unsplash.com; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; media-src 'none'; object-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
