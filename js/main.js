@@ -8,7 +8,7 @@ const CONFIG = {
   // Numero WhatsApp in formato internazionale, senza "+" né spazi.
   // Per i test: mettere qui il proprio cellulare (es. "393XXXXXXXXX").
   // Dopo la demo: fisso del negozio se attivo su WhatsApp Business, oppure il cellulare dedicato.
-  whatsapp: "390399900514",
+  whatsapp: "393331234567",
   timeZone: "Europe/Rome",
   // Orari per giorno della settimana (0 = domenica). Formato "HH:MM".
   hours: {
