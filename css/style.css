@@ -796,19 +796,19 @@ img.img-missing { visibility: hidden; }
 /* Colazione: cornetto a destra, cappuccino a sinistra, vassoio sullo sfondo */
 .crop-croissant  { --zoom: 1.7; --fx: 78%; --fy: 72%; }
 .crop-brioche    { --zoom: 1; }  /* foto dedicata */
-.crop-caffe      { --zoom: 1.8; --fx: 28%; --fy: 62%; }
+.crop-caffe      { --zoom: 1; }  /* foto dedicata */
 /* Mignon: tartellette a sinistra, bignè al centro, cannoncini a destra */
-.crop-cannoncini { --zoom: 1.8; --fx: 85%; --fy: 62%; }
-.crop-bigne      { --zoom: 1.8; --fx: 50%; --fy: 45%; }
-.crop-tartellette{ --zoom: 1.8; --fx: 18%; --fy: 68%; }
+.crop-cannoncini { --zoom: 1; }  /* foto dedicata */
+.crop-bigne      { --zoom: 1; }  /* foto dedicata */
+.crop-tartellette{ --zoom: 1; }  /* foto dedicata */
 /* Torte: millefoglie */
 .crop-millefoglie{ --zoom: 1.1; --fx: 50%; --fy: 55%; }
-.crop-saint-honore { --zoom: 1.7; --fx: 50%; --fy: 38%; }
+.crop-saint-honore { --zoom: 1; }  /* foto dedicata */
 .crop-crostata   { --zoom: 1; }  /* foto dedicata */
 .crop-torta-compleanno { --zoom: 1; }  /* foto dedicata */
 /* Lievitati: foto verticale del panettone */
 .crop-panettone  { object-position: 50% 62%; }
-.crop-chiacchiere{ object-position: 50% 62%; --zoom: 1.6; --fx: 80%; --fy: 55%; }
-.crop-colomba    { object-position: 50% 62%; --zoom: 1.5; --fx: 35%; --fy: 45%; }
+.crop-chiacchiere{ --zoom: 1; }  /* foto dedicata */
+.crop-colomba    { --zoom: 1; }  /* foto dedicata */
 .gallery-item:nth-child(3) img { object-position: 35% 50%; }
 .gallery-item:nth-child(4) img { object-position: 50% 60%; }
