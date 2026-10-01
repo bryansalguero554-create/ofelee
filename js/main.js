@@ -105,18 +105,31 @@ const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-/* ---------- Immagini mancanti ----------
-   Se manca la foto del singolo prodotto si usa quella della categoria
-   (data-fallback, es. img/colazione.jpg); se manca anche quella resta
-   il segnaposto. */
+/* ---------- Immagini ----------
+   Ordine di ricerca per ogni foto:
+   1. foto del singolo prodotto (es. img/croissant.jpg)
+   2. foto della categoria (data-fallback, es. img/colazione.jpg)
+   3. foto stock temporanea di Unsplash per la demo (STOCK_PHOTOS)
+   4. segnaposto color caramello.
+   Appena le foto reali vengono messe in img/, sostituiscono da sole quelle stock. */
+const STOCK_PHOTOS = {
+  "img/hero-bg.jpg": "https://images.unsplash.com/photo-1555507036-ab1e4006aaeb?w=1920&q=80",
+  "img/colazione.jpg": "https://images.unsplash.com/photo-1495474472201-4966687eb190?w=800&q=80",
+  "img/mignon.jpg": "https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=800&q=80",
+  "img/torte.jpg": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+  "img/lievitati.jpg": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80",
+};
+
 document.querySelectorAll(".hero-media img, .about-media img, .card-img img, .gallery-item img").forEach((img) => {
+  const local = img.getAttribute("src");
+  const fallback = img.dataset.fallback;
+  const queue = [fallback, STOCK_PHOTOS[local], STOCK_PHOTOS[fallback]]
+    .filter((src, i, all) => src && src !== local && all.indexOf(src) === i);
+
   const onFail = () => {
-    const fallback = img.dataset.fallback;
-    if (fallback && !img.src.endsWith(fallback)) {
-      img.src = fallback;
-    } else {
-      img.classList.add("img-missing");
-    }
+    const next = queue.shift();
+    if (next) img.src = next;
+    else img.classList.add("img-missing");
   };
   img.addEventListener("error", onFail);
   if (img.complete && img.naturalWidth === 0) onFail();
