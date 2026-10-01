@@ -785,3 +785,26 @@ img.img-missing { visibility: hidden; }
 .app-waze   { --c: #1fa9d6; }
 .app-other  { --c: var(--gold); }
 .app-copy   { --c: var(--moka); }
+
+/* ---------- Inquadrature delle foto ----------
+   Ogni scheda mostra un dettaglio diverso della foto di categoria,
+   così le schede della stessa sezione non sembrano identiche. */
+.hero-media img { object-position: 50% 68%; }
+.about-media img { object-position: 50% 45%; }
+.card-img img { transform-origin: var(--fx, 50%) var(--fy, 50%); scale: var(--zoom, 1); }
+.crop-croissant  { object-position: 50% 85%; --zoom: 1.35; --fx: 30%; --fy: 75%; }
+.crop-brioche    { object-position: 50% 82%; --zoom: 1.9;  --fx: 15%; --fy: 75%; }
+.crop-caffe      { object-position: 50% 40%; }
+.crop-cannoncini { object-position: 50% 35%; --zoom: 1.6;  --fx: 15%; --fy: 35%; }
+.crop-bigne      { object-position: 50% 45%; --zoom: 1.6;  --fx: 65%; --fy: 45%; }
+.crop-tartellette{ object-position: 50% 70%; --zoom: 1.6;  --fx: 55%; --fy: 60%; }
+.crop-millefoglie{ object-position: 50% 72%; }
+.crop-saint-honore { object-position: 50% 74%; --zoom: 1.6; --fx: 60%; --fy: 30%; }
+.crop-crostata   { object-position: 50% 92%; --zoom: 1.4;  --fx: 25%; --fy: 70%; }
+.crop-torta-compleanno { object-position: 50% 68%; --zoom: 1.25; --fx: 75%; --fy: 40%; }
+.crop-panettone  { object-position: 50% 62%; }
+.crop-chiacchiere{ object-position: 50% 62%; --zoom: 1.6; --fx: 80%; --fy: 55%; }
+.crop-colomba    { object-position: 50% 62%; --zoom: 1.5; --fx: 35%; --fy: 45%; }
+.gallery-item:nth-child(1) img { object-position: 50% 70%; }
+.gallery-item:nth-child(3) img { object-position: 50% 75%; }
+.gallery-item:nth-child(4) img { object-position: 50% 60%; }
