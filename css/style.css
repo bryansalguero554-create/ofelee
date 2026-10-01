@@ -788,23 +788,27 @@ img.img-missing { visibility: hidden; }
 
 /* ---------- Inquadrature delle foto ----------
    Ogni scheda mostra un dettaglio diverso della foto di categoria,
-   così le schede della stessa sezione non sembrano identiche. */
-.hero-media img { object-position: 50% 68%; }
-.about-media img { object-position: 50% 45%; }
+   così le schede della stessa sezione non sembrano identiche.
+   --fx/--fy: punto su cui zoomare; --zoom: ingrandimento. */
+.hero-media img { object-position: 50% 50%; }
+.about-media img { object-position: 60% 50%; }
 .card-img img { transform-origin: var(--fx, 50%) var(--fy, 50%); scale: var(--zoom, 1); }
-.crop-croissant  { object-position: 50% 85%; --zoom: 1.35; --fx: 30%; --fy: 75%; }
-.crop-brioche    { object-position: 50% 82%; --zoom: 1.9;  --fx: 15%; --fy: 75%; }
-.crop-caffe      { object-position: 50% 40%; }
-.crop-cannoncini { object-position: 50% 35%; --zoom: 1.6;  --fx: 15%; --fy: 35%; }
-.crop-bigne      { object-position: 50% 45%; --zoom: 1.6;  --fx: 65%; --fy: 45%; }
-.crop-tartellette{ object-position: 50% 70%; --zoom: 1.6;  --fx: 55%; --fy: 60%; }
-.crop-millefoglie{ object-position: 50% 72%; }
-.crop-saint-honore { object-position: 50% 74%; --zoom: 1.6; --fx: 60%; --fy: 30%; }
-.crop-crostata   { object-position: 50% 92%; --zoom: 1.4;  --fx: 25%; --fy: 70%; }
-.crop-torta-compleanno { object-position: 50% 68%; --zoom: 1.25; --fx: 75%; --fy: 40%; }
+/* Colazione: cornetto a destra, cappuccino a sinistra, vassoio sullo sfondo */
+.crop-croissant  { --zoom: 1.7; --fx: 78%; --fy: 72%; }
+.crop-brioche    { --zoom: 1; }  /* foto dedicata */
+.crop-caffe      { --zoom: 1.8; --fx: 28%; --fy: 62%; }
+/* Mignon: tartellette a sinistra, bignè al centro, cannoncini a destra */
+.crop-cannoncini { --zoom: 1.8; --fx: 85%; --fy: 62%; }
+.crop-bigne      { --zoom: 1.8; --fx: 50%; --fy: 45%; }
+.crop-tartellette{ --zoom: 1.8; --fx: 18%; --fy: 68%; }
+/* Torte: millefoglie */
+.crop-millefoglie{ --zoom: 1.1; --fx: 50%; --fy: 55%; }
+.crop-saint-honore { --zoom: 1.7; --fx: 50%; --fy: 38%; }
+.crop-crostata   { --zoom: 1; }  /* foto dedicata */
+.crop-torta-compleanno { --zoom: 1; }  /* foto dedicata */
+/* Lievitati: foto verticale del panettone */
 .crop-panettone  { object-position: 50% 62%; }
 .crop-chiacchiere{ object-position: 50% 62%; --zoom: 1.6; --fx: 80%; --fy: 55%; }
 .crop-colomba    { object-position: 50% 62%; --zoom: 1.5; --fx: 35%; --fy: 45%; }
-.gallery-item:nth-child(1) img { object-position: 50% 70%; }
-.gallery-item:nth-child(3) img { object-position: 50% 75%; }
+.gallery-item:nth-child(3) img { object-position: 75% 50%; }
 .gallery-item:nth-child(4) img { object-position: 50% 60%; }
