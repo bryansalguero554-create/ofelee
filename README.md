@@ -41,3 +41,19 @@ Se si usano foto stock (Unsplash/Pexels) per la demo, vanno sostituite con quell
 Le informative si aprono in una finestra dal footer. Il sito non contatta servizi esterni finché
 l'utente non lo chiede: i font sono ospitati in `fonts/` (licenza SIL OFL) e la mappa di Google
 si carica solo dopo il clic su "Mostra mappa interattiva". Il testo finale va comunque fatto verificare.
+
+## Sicurezza
+Il sito è statico: niente database, login, server o librerie di terze parti, quindi non c'è nulla da "bucare" lato server. In più:
+
+- **Content Security Policy** (in `index.html` e in `_headers`): il browser esegue solo script e stili del sito stesso; l'unica risorsa esterna ammessa è la mappa Google, e solo dopo il consenso. Blocca alla radice iniezioni di codice (XSS).
+- **Nessuno stile o script inline**, nessun uso di `innerHTML`: i testi dinamici sono inseriti solo come testo.
+- **Modulo ordini**: tipo di dolce verificato su una lista ammessa, numero di persone 1–500, data entro un anno, nome max 60 caratteri, note max 500; caratteri di controllo e invisibili rimossi; limite contro i doppi invii. I dati non vengono mai salvati: finiscono solo nel messaggio WhatsApp.
+- **Link esterni** con `noopener noreferrer`; **mappa** in iframe isolato (`sandbox`) e caricata solo su richiesta.
+- **`_headers`**: su Netlify o Cloudflare Pages aggiunge HSTS, protezione dal clickjacking (`frame-ancestors`/`X-Frame-Options`), `nosniff`, `Permissions-Policy` e `Referrer-Policy`.
+
+### Su GitHub Pages
+GitHub Pages non permette intestazioni personalizzate: valgono le protezioni in `index.html`. Attivare in *Settings → Pages* l'opzione **Enforce HTTPS**.
+Per la protezione completa (incluso il clickjacking) si consiglia la pubblicazione su Netlify o Cloudflare Pages, che leggono `_headers`.
+
+### Account
+Attivare la verifica in due passaggi (2FA) sull'account GitHub e su quello del dominio: è il punto più a rischio per un sito statico.

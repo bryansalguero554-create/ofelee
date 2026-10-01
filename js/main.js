@@ -1,3 +1,5 @@
+"use strict";
+
 /* =========================================================
    L'Ôfelee – script del sito
    ========================================================= */
@@ -24,6 +26,21 @@ const CONFIG = {
 const DAY_NAMES = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"];
 
 /* ---------- Utility ---------- */
+
+// Pulizia del testo inserito dall'utente: niente caratteri di controllo,
+// spazi normalizzati, lunghezza limitata. Il testo finisce solo nel
+// messaggio WhatsApp (codificato nell'URL), mai nell'HTML della pagina.
+function cleanText(value, maxLength) {
+  return String(value ?? "")
+    .normalize("NFC")
+    .replace(/[\u0000-\u0009\u000B-\u001F\u007F-\u009F\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g, "")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+    .slice(0, maxLength);
+}
+
+const isValidWhatsapp = (n) => /^[1-9]\d{7,14}$/.test(n);
 
 // Data/ora correnti a Merate, indipendentemente dal fuso del visitatore.
 function nowInRome() {
@@ -116,7 +133,9 @@ function loadMap() {
   iframe.title = "Mappa: Pasticceria L'Ôfelee, Via Padre Paolo Arlati 2, Merate";
   iframe.src = "https://maps.google.com/maps?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&z=16&output=embed";
   iframe.allowFullscreen = true;
-  iframe.referrerPolicy = "no-referrer-when-downgrade";
+  iframe.referrerPolicy = "strict-origin-when-cross-origin";
+  // La mappa gira isolata: non può accedere alla pagina né navigarla.
+  iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox");
   mapBox.replaceChildren(iframe);
 }
 
@@ -297,6 +316,7 @@ const isoDate = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getD
   const now = nowInRome();
   const tomorrow = new Date(now.year, now.month - 1, now.day + 1);
   dateInput.min = isoDate(tomorrow);
+  dateInput.max = isoDate(new Date(now.year + 1, now.month - 1, now.day));
 })();
 
 function parseInputDate(value) {
@@ -330,9 +350,15 @@ document.querySelectorAll("[data-preset]").forEach((link) => {
   });
 });
 
+const ALLOWED_TYPES = new Set(Array.from(tipoSelect.options, (o) => o.value));
+let lastSubmit = 0;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   formError.hidden = true;
+
+  // Evita aperture multiple di WhatsApp con doppi clic ravvicinati.
+  if (Date.now() - lastSubmit < 3000) return;
 
   const fields = ["f-persone", "f-data", "f-nome"].map((id) => document.getElementById(id));
   let firstInvalid = null;
@@ -342,19 +368,40 @@ form.addEventListener("submit", (e) => {
     if (!valid && !firstInvalid) firstInvalid = f;
   });
 
-  if (!firstInvalid && parseInputDate(dateInput.value).getDay() === 1) firstInvalid = dateInput;
+  const tipo = tipoSelect.value;
+  const persone = Number(document.getElementById("f-persone").value);
+  const nome = cleanText(document.getElementById("f-nome").value, 60);
+  const note = cleanText(document.getElementById("f-note").value, 500);
 
-  if (firstInvalid) {
-    formError.textContent = firstInvalid === dateInput && dateInput.value
-      ? "Il lunedì siamo chiusi: scegli un'altra data di ritiro."
-      : "Compila i campi evidenziati: tipo di dolce, numero di persone, data di ritiro e nome.";
+  if (!firstInvalid && (!Number.isInteger(persone) || persone < 1 || persone > 500)) {
+    firstInvalid = document.getElementById("f-persone");
+  }
+  if (!firstInvalid && !nome) firstInvalid = document.getElementById("f-nome");
+  if (!firstInvalid && (dateInput.value < dateInput.min || dateInput.value > dateInput.max)) {
+    firstInvalid = dateInput;
+  }
+
+  let message = "Compila i campi evidenziati: tipo di dolce, numero di persone, data di ritiro e nome.";
+  if (!firstInvalid && parseInputDate(dateInput.value).getDay() === 1) {
+    firstInvalid = dateInput;
+    message = "Il lunedì siamo chiusi: scegli un'altra data di ritiro.";
+  }
+
+  if (firstInvalid || !ALLOWED_TYPES.has(tipo)) {
+    formError.textContent = message;
     formError.hidden = false;
-    firstInvalid.focus();
+    (firstInvalid || tipoSelect).classList.add("is-invalid");
+    (firstInvalid || tipoSelect).focus();
     return;
   }
 
-  const data = Object.fromEntries(new FormData(form));
-  const dateLabel = parseInputDate(data.data).toLocaleDateString("it-IT", {
+  if (!isValidWhatsapp(CONFIG.whatsapp)) {
+    formError.textContent = "Servizio momentaneamente non disponibile: chiamaci allo 039 990 0514.";
+    formError.hidden = false;
+    return;
+  }
+
+  const dateLabel = parseInputDate(dateInput.value).toLocaleDateString("it-IT", {
     weekday: "long", day: "numeric", month: "long", year: "numeric",
   });
 
@@ -362,18 +409,19 @@ form.addEventListener("submit", (e) => {
     "Buongiorno Pasticceria L'Ôfelee,",
     "vorrei richiedere la disponibilità per una torta/ordine:",
     "",
-    `🎂 Prodotto: ${data.tipo}`,
-    `👥 Per quante persone: ${data.persone}`,
+    `🎂 Prodotto: ${tipo}`,
+    `👥 Per quante persone: ${persone}`,
     `📅 Data di ritiro richiesta: ${dateLabel}`,
-    `👤 Nome: ${data.nome.trim()}`,
-    data.note.trim() ? `📝 Note/Dettagli: ${data.note.trim()}` : null,
+    `👤 Nome: ${nome}`,
+    note ? `📝 Note/Dettagli: ${note}` : null,
   ].filter((l) => l !== null);
 
+  lastSubmit = Date.now();
   const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
-  window.open(url, "_blank", "noopener");
+  window.open(url, "_blank", "noopener,noreferrer");
 });
 
-form.querySelectorAll("input").forEach((input) =>
+form.querySelectorAll("input, select, textarea").forEach((input) =>
   input.addEventListener("input", () => input.classList.remove("is-invalid"))
 );
 

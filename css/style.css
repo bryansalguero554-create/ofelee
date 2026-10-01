@@ -780,3 +780,9 @@ img.img-missing { visibility: hidden; }
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
 }
+
+.app-google { --c: #34a853; }
+.app-apple  { --c: #555; }
+.app-waze   { --c: #1fa9d6; }
+.app-other  { --c: var(--gold); }
+.app-copy   { --c: var(--moka); }

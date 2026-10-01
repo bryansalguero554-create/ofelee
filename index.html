@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Sicurezza: il browser può caricare solo risorse del sito stesso;
+       unica eccezione la mappa di Google, e solo dopo il consenso. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; media-src 'none'; object-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Pasticceria &amp; Caffetteria L'Ôfelee | Merate (LC)</title>
   <meta name="description" content="Pasticceria artigianale e caffetteria a Merate (LC): colazioni, pasticceria mignon, torte su ordinazione per compleanni e cerimonie, panettoni e colombe artigianali. Via P. Paolo Arlati 2.">
   <meta name="theme-color" content="#4a2c22">
@@ -353,12 +357,12 @@
 
           <div class="field">
             <label for="f-nome">Nome</label>
-            <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Il tuo nome" required>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Il tuo nome" maxlength="60" required>
           </div>
 
           <div class="field">
             <label for="f-note">Gusti, decorazioni, scritta, allergie <span class="optional">(facoltativo)</span></label>
-            <textarea id="f-note" name="note" rows="3" placeholder="es. Pan di Spagna con crema e fragole, scritta “Buon compleanno Giulia”"></textarea>
+            <textarea id="f-note" name="note" rows="3" maxlength="500" placeholder="es. Pan di Spagna con crema e fragole, scritta “Buon compleanno Giulia”"></textarea>
           </div>
 
           <p class="form-error" role="alert" data-form-error hidden></p>
@@ -396,7 +400,7 @@
               <li>Torte per cerimonie</li>
               <li>Panettoni artigianali</li>
             </ul>
-            <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Pasticceria+L%27Ofelee+Via+Arlati+2+Merate" target="_blank" rel="noopener">Leggi le recensioni su Google</a>
+            <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Pasticceria+L%27Ofelee+Via+Arlati+2+Merate" target="_blank" rel="noopener noreferrer">Leggi le recensioni su Google</a>
           </div>
         </div>
       </div>
@@ -468,7 +472,7 @@
             </div>
           </div>
           <div class="where-actions">
-            <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener" data-directions>Indicazioni stradali</a>
+            <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener noreferrer" data-directions>Indicazioni stradali</a>
             <a class="btn btn-ghost-light btn-small" href="tel:+390399900514">Chiama</a>
           </div>
           <p class="hours-note">Parcheggio comodo nelle vicinanze, ideale per il ritiro rapido degli ordini.</p>
@@ -493,7 +497,7 @@
       </div>
       <div class="footer-links">
         <!-- TODO: sostituire con l'URL diretto della pagina (facebook.com/nomepagina) -->
-        <a href="https://www.facebook.com/search/top?q=Pasticceria%20%26%20Caffetteria%20L%27%C3%94felee" target="_blank" rel="noopener">Pagina Facebook</a>
+        <a href="https://www.facebook.com/search/top?q=Pasticceria%20%26%20Caffetteria%20L%27%C3%94felee" target="_blank" rel="noopener noreferrer">Pagina Facebook</a>
         <button type="button" class="link-btn" data-open-dialog="privacy-dialog">Privacy Policy</button>
         <button type="button" class="link-btn" data-open-dialog="cookie-dialog">Cookie Policy</button>
       </div>
@@ -511,11 +515,11 @@
     <h2 id="directions-title" class="h3">Come vuoi raggiungerci?</h2>
     <p class="directions-address">Via Padre Paolo Arlati, 2 — 23807 Merate (LC)</p>
     <ul class="directions-list">
-      <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener"><span class="app-dot" style="--c:#34a853">G</span>Google Maps</a></li>
-      <li><a href="https://maps.apple.com/?daddr=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC,+Italia&amp;dirflg=d" target="_blank" rel="noopener"><span class="app-dot" style="--c:#555">A</span>Apple Mappe</a></li>
-      <li><a href="https://waze.com/ul?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&amp;navigate=yes" target="_blank" rel="noopener"><span class="app-dot" style="--c:#33ccff">W</span>Waze</a></li>
-      <li data-android-only hidden><a href="geo:0,0?q=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC"><span class="app-dot" style="--c:var(--gold)">…</span>Altra app installata</a></li>
-      <li><button type="button" data-copy-address><span class="app-dot" style="--c:var(--moka)">⧉</span><span data-copy-label>Copia indirizzo</span></button></li>
+      <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener noreferrer"><span class="app-dot app-google" aria-hidden="true">G</span>Google Maps</a></li>
+      <li><a href="https://maps.apple.com/?daddr=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC,+Italia&amp;dirflg=d" target="_blank" rel="noopener noreferrer"><span class="app-dot app-apple" aria-hidden="true">A</span>Apple Mappe</a></li>
+      <li><a href="https://waze.com/ul?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&amp;navigate=yes" target="_blank" rel="noopener noreferrer"><span class="app-dot app-waze" aria-hidden="true">W</span>Waze</a></li>
+      <li data-android-only hidden><a href="geo:0,0?q=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC"><span class="app-dot app-other" aria-hidden="true">…</span>Altra app installata</a></li>
+      <li><button type="button" data-copy-address><span class="app-dot app-copy" aria-hidden="true">⧉</span><span data-copy-label>Copia indirizzo</span></button></li>
     </ul>
   </dialog>
 
@@ -549,7 +553,7 @@
       Chiama
     </a>
     <a href="#torte" class="mobile-bar-main">Ordina una torta</a>
-    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener" data-directions>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener noreferrer" data-directions>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
       Mappa
     </a>
