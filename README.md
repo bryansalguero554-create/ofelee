@@ -38,17 +38,17 @@ Le card ritagliano in 4:3: consigliati 800×600 px, JPG compressi (< 200 KB).
 Se si usano foto stock (Unsplash/Pexels) per la demo, vanno sostituite con quelle reali prima della pubblicazione.
 
 ## Privacy e Cookie
-Le informative si aprono in una finestra dal footer. Il sito non contatta servizi esterni finché
-l'utente non lo chiede: i font sono ospitati in `fonts/` (licenza SIL OFL) e la mappa di Google
-si carica solo dopo il clic su "Mostra mappa interattiva". Il testo finale va comunque fatto verificare.
+Le informative si aprono in una finestra dal footer. I font sono ospitati in `fonts/` (licenza SIL OFL).
+La mappa di Google si carica automaticamente quando si arriva alla sezione "Dove siamo" e Google può
+impostare propri cookie: valutare con un consulente se serve un banner di consenso.
 
 ## Sicurezza
 Il sito è statico: niente database, login, server o librerie di terze parti, quindi non c'è nulla da "bucare" lato server. In più:
 
-- **Content Security Policy** (in `index.html` e in `_headers`): il browser esegue solo script e stili del sito stesso; l'unica risorsa esterna ammessa è la mappa Google, e solo dopo il consenso. Blocca alla radice iniezioni di codice (XSS).
+- **Content Security Policy** (in `index.html` e in `_headers`): il browser esegue solo script e stili del sito stesso; l'unica risorsa esterna ammessa è la mappa Google. Blocca alla radice iniezioni di codice (XSS).
 - **Nessuno stile o script inline**, nessun uso di `innerHTML`: i testi dinamici sono inseriti solo come testo.
 - **Modulo ordini**: tipo di dolce verificato su una lista ammessa, numero di persone 1–500, data entro un anno, nome max 60 caratteri, note max 500; caratteri di controllo e invisibili rimossi; limite contro i doppi invii. I dati non vengono mai salvati: finiscono solo nel messaggio WhatsApp.
-- **Link esterni** con `noopener noreferrer`; **mappa** in iframe isolato (`sandbox`) e caricata solo su richiesta.
+- **Link esterni** con `noopener noreferrer`; **mappa** in iframe isolato (`sandbox`), caricata solo quando si arriva alla sezione.
 - **`_headers`**: su Netlify o Cloudflare Pages aggiunge HSTS, protezione dal clickjacking (`frame-ancestors`/`X-Frame-Options`), `nosniff`, `Permissions-Policy` e `Referrer-Policy`.
 
 ### Su GitHub Pages

@@ -122,13 +122,14 @@ document.querySelectorAll(".hero-media img, .about-media img, .card-img img, .ga
   if (img.complete && img.naturalWidth === 0) onFail();
 });
 
-/* ---------- Mappa interattiva (caricata solo su consenso) ----------
-   Nessun contatto con Google finché il visitatore non clicca; con la
-   spunta "Mostra sempre" la scelta viene ricordata su questo dispositivo. */
-const MAP_PREF_KEY = "ofelee-map-consent";
+/* ---------- Mappa interattiva ----------
+   Si carica da sola quando la sezione "Dove siamo" si avvicina, così
+   non rallenta l'apertura della pagina. Il riquadro sotto (indirizzo e
+   pulsante indicazioni) resta visibile durante il caricamento. */
 const mapBox = document.getElementById("map");
 
 function loadMap() {
+  if (mapBox.querySelector("iframe")) return;
   const iframe = document.createElement("iframe");
   iframe.title = "Mappa: Pasticceria L'Ôfelee, Via Padre Paolo Arlati 2, Merate";
   iframe.src = "https://maps.google.com/maps?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&z=16&output=embed";
@@ -136,23 +137,14 @@ function loadMap() {
   iframe.referrerPolicy = "strict-origin-when-cross-origin";
   // La mappa gira isolata: non può accedere alla pagina né navigarla.
   iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox");
-  mapBox.replaceChildren(iframe);
+  mapBox.append(iframe);
 }
 
-const readPref = () => { try { return localStorage.getItem(MAP_PREF_KEY) === "1"; } catch { return false; } };
-const savePref = () => { try { localStorage.setItem(MAP_PREF_KEY, "1"); } catch { /* storage non disponibile */ } };
-
-document.querySelector("[data-load-map]")?.addEventListener("click", () => {
-  if (document.querySelector("[data-map-remember]")?.checked) savePref();
-  loadMap();
-});
-
-if (mapBox && readPref()) {
-  // Consenso già dato: carica la mappa quando la sezione si avvicina.
+if (mapBox) {
   if ("IntersectionObserver" in window) {
     const mapIo = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) { mapIo.disconnect(); loadMap(); }
-    }, { rootMargin: "300px" });
+    }, { rootMargin: "600px" });
     mapIo.observe(mapBox);
   } else {
     loadMap();

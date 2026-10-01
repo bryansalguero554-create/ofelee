@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Sicurezza: il browser può caricare solo risorse del sito stesso;
-       unica eccezione la mappa di Google, e solo dopo il consenso. -->
+       unica eccezione la mappa di Google. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; media-src 'none'; object-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Pasticceria &amp; Caffetteria L'Ôfelee | Merate (LC)</title>
@@ -466,9 +466,8 @@
           <div class="map-wrap" id="map">
             <div class="map-placeholder">
               <p><strong>Pasticceria &amp; Caffetteria L'Ôfelee</strong><br>Via Padre Paolo Arlati, 2 — Merate (LC)</p>
-              <button type="button" class="btn btn-gold btn-small" data-load-map>Mostra mappa interattiva</button>
-              <label class="map-remember"><input type="checkbox" data-map-remember> Mostra sempre la mappa su questo dispositivo</label>
-              <small>La mappa è fornita da Google e viene caricata solo dopo il clic.</small>
+              <small>Caricamento della mappa…</small>
+              <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener noreferrer" data-directions>Apri le indicazioni</a>
             </div>
           </div>
           <div class="where-actions">
@@ -541,8 +540,8 @@
     </form>
     <h2 id="cookie-title" class="h3">Informativa Cookie</h2>
     <p>Questo sito <strong>non fa uso di cookie di profilazione o tracciamento</strong>.</p>
-    <p>I caratteri tipografici e le risorse sono erogati localmente. La mappa esterna (Google Maps) si attiva solo su esplicita interazione dell'utente, garantendo la navigazione libera da cookie traccianti di terze parti.</p>
-    <p>Se l'utente sceglie "Mostra sempre la mappa", la preferenza viene salvata solo nella memoria locale del proprio browser (strumento tecnico, non trasmesso a terzi).</p>
+    <p>I caratteri tipografici e le risorse del sito sono erogati localmente.</p>
+    <p>La sezione "Dove siamo" contiene una mappa interattiva fornita da Google Maps (Google Ireland Ltd.), caricata quando si raggiunge quella sezione. Google può impostare propri cookie, regolati dalla <a href="https://policies.google.com/technologies/cookies?hl=it" target="_blank" rel="noopener noreferrer">cookie policy di Google</a>.</p>
     <form method="dialog"><button class="btn btn-gold btn-small">Chiudi</button></form>
   </dialog>
 
