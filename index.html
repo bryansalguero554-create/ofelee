@@ -204,7 +204,7 @@
               </div>
             </article>
           </div>
-          <p class="panel-cta">Vassoio per un'occasione? <a href="#torte" data-preset="Vassoio di pasticcini mignon">Prenotalo qui</a> e lo trovi pronto al ritiro.</p>
+          <p class="panel-cta">Vassoio per un'occasione? <a href="#torte">Prenotalo qui</a> e lo trovi pronto al ritiro.</p>
         </div>
 
         <!-- Torte -->
@@ -277,7 +277,7 @@
               </div>
             </article>
           </div>
-          <p class="panel-cta">Vuoi riservare il tuo? <a href="#torte" data-preset="Panettone / Colomba artigianale">Prenota ora</a>.</p>
+          <p class="panel-cta">Vuoi riservare il tuo? <a href="#torte">Prenota ora</a>.</p>
         </div>
       </div>
     </section>
@@ -317,7 +317,7 @@
         <div class="order-text">
           <p class="eyebrow">Su ordinazione</p>
           <h2 id="order-title">Ordina la tua torta o il tuo rinfresco</h2>
-          <p>Compila il modulo in pochi secondi: ti si aprirà WhatsApp con il messaggio già pronto da inviarci. Ti risponderemo per confermare gusti, dettagli e orario di ritiro.</p>
+          <p>Chiamaci e raccontaci cosa desideri: ti aiutiamo a scegliere gusti, dimensioni e decorazioni, e fissiamo insieme il giorno del ritiro.</p>
           <ul class="checklist">
             <li>Torte di compleanno e per cerimonie</li>
             <li>Vassoi di pasticceria mignon</li>
@@ -325,55 +325,27 @@
             <li>Panettoni e colombe su prenotazione</li>
           </ul>
           <p class="order-note">Per le torte personalizzate consigliamo di ordinare con almeno <strong>3 giorni</strong> di anticipo.</p>
-          <p class="order-alt">Preferisci parlarne a voce? <a href="tel:+390399900514">Chiamaci allo 039 990 0514</a></p>
         </div>
 
-        <form class="order-form" id="order-form" novalidate>
-          <div class="field">
-            <label for="f-tipo">Cosa desideri?</label>
-            <select id="f-tipo" name="tipo" required>
-              <option value="Torta di compleanno">Torta di compleanno</option>
-              <option value="Torta per cerimonia">Torta per cerimonia (battesimo, comunione, laurea…)</option>
-              <option value="Millefoglie">Millefoglie</option>
-              <option value="Saint Honoré">Saint Honoré</option>
-              <option value="Crostata di frutta fresca">Crostata di frutta fresca</option>
-              <option value="Vassoio di pasticcini mignon">Vassoio di pasticcini mignon</option>
-              <option value="Rinfresco / buffet">Rinfresco / buffet</option>
-              <option value="Panettone / Colomba artigianale">Panettone / Colomba artigianale</option>
-              <option value="Altro">Altro</option>
-            </select>
+        <div class="order-call">
+          <p class="order-call-label">Prenota con una telefonata</p>
+          <a class="order-call-number" href="tel:+390399900514">039 990 0514</a>
+          <p class="open-status" data-open-status>&nbsp;</p>
+          <a class="btn btn-accent btn-block btn-call" href="tel:+390399900514">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            Chiamaci ora
+          </a>
+          <div class="order-call-tips">
+            <p>Per fare prima, tieni a portata di mano:</p>
+            <ul>
+              <li>il dolce che desideri</li>
+              <li>per quante persone</li>
+              <li>il giorno del ritiro</li>
+              <li>gusti, scritta e allergie</li>
+            </ul>
           </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="f-persone">Per quante persone?</label>
-              <input id="f-persone" name="persone" type="number" min="1" max="500" inputmode="numeric" placeholder="es. 12" required>
-            </div>
-            <div class="field">
-              <label for="f-data">Data di ritiro</label>
-              <input id="f-data" name="data" type="date" required>
-              <small class="field-hint" data-date-hint></small>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="f-nome">Nome</label>
-            <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Il tuo nome" maxlength="60" required>
-          </div>
-
-          <div class="field">
-            <label for="f-note">Gusti, decorazioni, scritta, allergie <span class="optional">(facoltativo)</span></label>
-            <textarea id="f-note" name="note" rows="3" maxlength="500" placeholder="es. Pan di Spagna con crema e fragole, scritta “Buon compleanno Giulia”"></textarea>
-          </div>
-
-          <p class="form-error" role="alert" data-form-error hidden></p>
-
-          <button type="submit" class="btn btn-whatsapp btn-block">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 1.9 17.6L.5 23.5l6-1.6A11.8 11.8 0 0 0 20.5 3.5ZM12 21.4a9.6 9.6 0 0 1-4.9-1.3l-.4-.2-3.6.9 1-3.5-.2-.4A9.7 9.7 0 1 1 12 21.4Zm5.3-7.2c-.3-.1-1.7-.9-2-1s-.5-.1-.7.2-.8 1-1 1.2-.4.2-.7 0a7.9 7.9 0 0 1-3.9-3.4c-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.4 13.4 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3Z"/></svg>
-            Invia la richiesta su WhatsApp
-          </button>
-          <p class="form-small">Nessun pagamento online: confermiamo tutto insieme al ritiro.</p>
-        </form>
+          <p class="form-small">Rispondiamo negli orari di apertura del negozio.</p>
+        </div>
       </div>
     </section>
 
@@ -531,7 +503,7 @@
     <h2 id="privacy-title" class="h3">Informativa Privacy</h2>
     <p class="dialog-ref">art. 13 Reg. UE 2016/679</p>
     <p>Questo sito ha scopo puramente illustrativo. Non acquisisce, non memorizza e non tratta dati personali in alcun database o server remoto.</p>
-    <p>La composizione della richiesta d'ordine rimanda direttamente all'applicazione WhatsApp dell'utente verso il recapito dell'attività, secondo i termini di servizio di WhatsApp Ireland Ltd.</p>
+    <p>Gli ordini si effettuano esclusivamente per telefono o in negozio.</p>
     <p><strong>Titolare:</strong> L'Ofelee di Mingotti Silvia – Via P. Arlati 2, Merate (LC).</p>
     <form method="dialog"><button class="btn btn-accent btn-small">Chiudi</button></form>
   </dialog>

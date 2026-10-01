@@ -8,14 +8,13 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 - **Hero** con payoff, pulsanti "Prenota una torta" / "Scopri le specialità", valutazione Google e stato "Aperto ora / Chiuso" in tempo reale (ora di Roma).
 - **Specialità** a schede: Colazione, Pasticceria Mignon, Torte & Cerimonie, Grandi Lievitati.
   I lievitati si attivano da soli in base al periodo (Natale, Carnevale ambrosiano, Pasqua).
-- **Ordina la tua torta**: modulo che apre WhatsApp con il messaggio già compilato (blocca il lunedì, avvisa sulle date troppo vicine).
+- **Ordina la tua torta**: prenotazione telefonica con pulsante "Chiamaci ora" e stato aperto/chiuso in tempo reale.
 - **Chi siamo**, servizi, **orari** con il giorno corrente evidenziato, **mappa** e indicazioni.
 - Barra azioni rapide su smartphone (Chiama · Ordina · Mappa) e dati strutturati Schema.org per Google.
 
 ## Da completare prima della pubblicazione
 1. **Foto**: inserire le immagini in `img/` (vedi sotto). Finché mancano si vede un segnaposto color caramello.
-2. **WhatsApp**: in `js/main.js` (`CONFIG.whatsapp`) mettere il numero in formato internazionale senza "+" (es. `393XXXXXXXXX`).
-   Per i test usare il proprio cellulare; dopo la demo il fisso del negozio (se attivo su WhatsApp Business) o un cellulare dedicato.
+2. **Ordini online** (facoltativo): oggi si prenota solo per telefono; il modulo WhatsApp è recuperabile dalla cronologia git.
 3. **P.IVA**: nel footer sostituire `[in aggiornamento]`.
 4. **Facebook**: il link nel footer apre la ricerca della pagina; sostituirlo con l'URL diretto (`facebook.com/...`).
 
@@ -47,7 +46,7 @@ Il sito è statico: niente database, login, server o librerie di terze parti, qu
 
 - **Content Security Policy** (in `index.html` e in `_headers`): il browser esegue solo script e stili del sito stesso; l'unica risorsa esterna ammessa è la mappa Google. Blocca alla radice iniezioni di codice (XSS).
 - **Nessuno stile o script inline**, nessun uso di `innerHTML`: i testi dinamici sono inseriti solo come testo.
-- **Modulo ordini**: tipo di dolce verificato su una lista ammessa, numero di persone 1–500, data entro un anno, nome max 60 caratteri, note max 500; caratteri di controllo e invisibili rimossi; limite contro i doppi invii. I dati non vengono mai salvati: finiscono solo nel messaggio WhatsApp.
+- **Nessun modulo né raccolta di dati**: gli ordini avvengono per telefono.
 - **Link esterni** con `noopener noreferrer`; **mappa** in iframe isolato (`sandbox`), caricata solo quando si arriva alla sezione.
 - **`_headers`**: su Netlify o Cloudflare Pages aggiunge HSTS, protezione dal clickjacking (`frame-ancestors`/`X-Frame-Options`), `nosniff`, `Permissions-Policy` e `Referrer-Policy`.
 

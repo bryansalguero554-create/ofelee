@@ -823,3 +823,45 @@ img.img-missing { visibility: hidden; }
   background-position: right -60px top -40px;
   background-repeat: no-repeat;
 }
+
+/* ---------- Prenotazione telefonica ---------- */
+.order-call {
+  background: var(--paper);
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.order-call-label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.order-call-number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 3.2rem);
+  font-weight: 600;
+  color: var(--olive);
+  text-decoration: none;
+  line-height: 1.1;
+}
+.order-call-number:hover { color: var(--accent); }
+.order-call .open-status { justify-content: center; margin: 10px 0 22px; color: var(--muted); font-size: .92rem; }
+.btn-call { font-size: 1.05rem; padding: 1em 1.4em; }
+.btn-call svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.order-call-tips {
+  text-align: left;
+  margin: 26px 0 8px;
+  padding: 18px 20px;
+  background: var(--cream);
+  border-radius: 12px;
+  font-size: .93rem;
+}
+.order-call-tips p { margin: 0 0 8px; font-weight: 600; color: var(--olive); }
+.order-call-tips ul { margin: 0; padding-left: 1.2em; color: var(--text); }
+.order-call-tips li { margin-bottom: 4px; }
+.order-call-tips li::marker { color: var(--accent); }

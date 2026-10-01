@@ -5,10 +5,6 @@
    ========================================================= */
 
 const CONFIG = {
-  // Numero WhatsApp in formato internazionale, senza "+" né spazi.
-  // Per i test: mettere qui il proprio cellulare (es. "393XXXXXXXXX").
-  // Dopo la demo: fisso del negozio se attivo su WhatsApp Business, oppure il cellulare dedicato.
-  whatsapp: "393331234567",
   timeZone: "Europe/Rome",
   // Orari per giorno della settimana (0 = domenica). Formato "HH:MM".
   hours: {
@@ -20,27 +16,11 @@ const CONFIG = {
     5: [["07:00", "12:30"], ["15:00", "19:30"]],
     6: [["07:00", "12:30"], ["15:00", "19:30"]],
   },
-  minDaysCustomCake: 3,
 };
 
 const DAY_NAMES = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"];
 
 /* ---------- Utility ---------- */
-
-// Pulizia del testo inserito dall'utente: niente caratteri di controllo,
-// spazi normalizzati, lunghezza limitata. Il testo finisce solo nel
-// messaggio WhatsApp (codificato nell'URL), mai nell'HTML della pagina.
-function cleanText(value, maxLength) {
-  return String(value ?? "")
-    .normalize("NFC")
-    .replace(/[\u0000-\u0009\u000B-\u001F\u007F-\u009F\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g, "")
-    .replace(/[ \t]+/g, " ")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim()
-    .slice(0, maxLength);
-}
-
-const isValidWhatsapp = (n) => /^[1-9]\d{7,14}$/.test(n);
 
 // Data/ora correnti a Merate, indipendentemente dal fuso del visitatore.
 function nowInRome() {
@@ -309,132 +289,9 @@ function updateOpenStatus() {
 updateOpenStatus();
 setInterval(updateOpenStatus, 60 * 1000);
 
-/* ---------- Modulo ordine → WhatsApp ---------- */
-const form = document.getElementById("order-form");
-const dateInput = document.getElementById("f-data");
-const tipoSelect = document.getElementById("f-tipo");
-const dateHint = document.querySelector("[data-date-hint]");
-const formError = document.querySelector("[data-form-error]");
-
-const pad = (n) => String(n).padStart(2, "0");
-const isoDate = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-
-(function setMinDate() {
-  const now = nowInRome();
-  const tomorrow = new Date(now.year, now.month - 1, now.day + 1);
-  dateInput.min = isoDate(tomorrow);
-  dateInput.max = isoDate(new Date(now.year + 1, now.month - 1, now.day));
-})();
-
-function parseInputDate(value) {
-  const [y, m, d] = value.split("-").map(Number);
-  return new Date(y, m - 1, d);
-}
-
-function checkDate() {
-  dateHint.textContent = "";
-  if (!dateInput.value) return;
-  const chosen = parseInputDate(dateInput.value);
-  const now = nowInRome();
-  const today = new Date(now.year, now.month - 1, now.day);
-  const daysAhead = Math.round((chosen - today) / 86400000);
-  const isCustom = /Torta|Rinfresco/.test(tipoSelect.value);
-
-  if (chosen.getDay() === 1) {
-    dateHint.textContent = "Il lunedì siamo chiusi: scegli un altro giorno.";
-  } else if (isCustom && daysAhead < CONFIG.minDaysCustomCake) {
-    dateHint.textContent = "Data ravvicinata: ti confermeremo noi la disponibilità.";
-  }
-}
-dateInput.addEventListener("change", checkDate);
-tipoSelect.addEventListener("change", checkDate);
-
-// Link "Prenota" dalle specialità: preseleziona il prodotto nel modulo.
-document.querySelectorAll("[data-preset]").forEach((link) => {
-  link.addEventListener("click", () => {
-    tipoSelect.value = link.dataset.preset;
-    checkDate();
-  });
-});
-
-const ALLOWED_TYPES = new Set(Array.from(tipoSelect.options, (o) => o.value));
-let lastSubmit = 0;
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  formError.hidden = true;
-
-  // Evita aperture multiple di WhatsApp con doppi clic ravvicinati.
-  if (Date.now() - lastSubmit < 3000) return;
-
-  const fields = ["f-persone", "f-data", "f-nome"].map((id) => document.getElementById(id));
-  let firstInvalid = null;
-  fields.forEach((f) => {
-    const valid = f.checkValidity() && f.value.trim() !== "";
-    f.classList.toggle("is-invalid", !valid);
-    if (!valid && !firstInvalid) firstInvalid = f;
-  });
-
-  const tipo = tipoSelect.value;
-  const persone = Number(document.getElementById("f-persone").value);
-  const nome = cleanText(document.getElementById("f-nome").value, 60);
-  const note = cleanText(document.getElementById("f-note").value, 500);
-
-  if (!firstInvalid && (!Number.isInteger(persone) || persone < 1 || persone > 500)) {
-    firstInvalid = document.getElementById("f-persone");
-  }
-  if (!firstInvalid && !nome) firstInvalid = document.getElementById("f-nome");
-  if (!firstInvalid && (dateInput.value < dateInput.min || dateInput.value > dateInput.max)) {
-    firstInvalid = dateInput;
-  }
-
-  let message = "Compila i campi evidenziati: tipo di dolce, numero di persone, data di ritiro e nome.";
-  if (!firstInvalid && parseInputDate(dateInput.value).getDay() === 1) {
-    firstInvalid = dateInput;
-    message = "Il lunedì siamo chiusi: scegli un'altra data di ritiro.";
-  }
-
-  if (firstInvalid || !ALLOWED_TYPES.has(tipo)) {
-    formError.textContent = message;
-    formError.hidden = false;
-    (firstInvalid || tipoSelect).classList.add("is-invalid");
-    (firstInvalid || tipoSelect).focus();
-    return;
-  }
-
-  if (!isValidWhatsapp(CONFIG.whatsapp)) {
-    formError.textContent = "Servizio momentaneamente non disponibile: chiamaci allo 039 990 0514.";
-    formError.hidden = false;
-    return;
-  }
-
-  const dateLabel = parseInputDate(dateInput.value).toLocaleDateString("it-IT", {
-    weekday: "long", day: "numeric", month: "long", year: "numeric",
-  });
-
-  const lines = [
-    "Buongiorno Pasticceria L'Ôfelee,",
-    "vorrei richiedere la disponibilità per una torta/ordine:",
-    "",
-    `🎂 Prodotto: ${tipo}`,
-    `👥 Per quante persone: ${persone}`,
-    `📅 Data di ritiro richiesta: ${dateLabel}`,
-    `👤 Nome: ${nome}`,
-    note ? `📝 Note/Dettagli: ${note}` : null,
-  ].filter((l) => l !== null);
-
-  lastSubmit = Date.now();
-  const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
-  window.open(url, "_blank", "noopener,noreferrer");
-});
-
-form.querySelectorAll("input, select, textarea").forEach((input) =>
-  input.addEventListener("input", () => input.classList.remove("is-invalid"))
-);
-
 /* ---------- Animazioni all'ingresso delle sezioni ---------- */
 if ("IntersectionObserver" in window) {
-  const targets = document.querySelectorAll(".strength, .section-head, .card, .order-text, .order-form, .about-media, .about-text, .hours-box, .where-box");
+  const targets = document.querySelectorAll(".strength, .section-head, .card, .order-text, .order-call, .about-media, .about-text, .hours-box, .where-box");
   targets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
