@@ -92,7 +92,7 @@ onScroll();
    Se manca la foto del singolo prodotto si usa quella della categoria
    (data-fallback, es. img/colazione.jpg); se manca anche quella resta
    il segnaposto. */
-document.querySelectorAll(".hero-media img, .about-media img, .card-img img").forEach((img) => {
+document.querySelectorAll(".hero-media img, .about-media img, .card-img img, .gallery-item img").forEach((img) => {
   const onFail = () => {
     const fallback = img.dataset.fallback;
     if (fallback && !img.src.endsWith(fallback)) {
@@ -103,6 +103,16 @@ document.querySelectorAll(".hero-media img, .about-media img, .card-img img").fo
   };
   img.addEventListener("error", onFail);
   if (img.complete && img.naturalWidth === 0) onFail();
+});
+
+/* ---------- Mappa caricata solo su richiesta (nessun contatto con Google prima) ---------- */
+document.querySelector("[data-load-map]")?.addEventListener("click", () => {
+  const iframe = document.createElement("iframe");
+  iframe.title = "Mappa: Pasticceria L'Ôfelee, Via Padre Paolo Arlati 2, Merate";
+  iframe.src = "https://maps.google.com/maps?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&z=16&output=embed";
+  iframe.allowFullscreen = true;
+  iframe.referrerPolicy = "no-referrer-when-downgrade";
+  document.getElementById("map").replaceChildren(iframe);
 });
 
 /* ---------- Informative Privacy e Cookie ---------- */
@@ -295,13 +305,14 @@ form.addEventListener("submit", (e) => {
   });
 
   const lines = [
-    "Buongiorno L'Ôfelee! 👋",
-    `Vorrei richiedere: *${data.tipo}*`,
-    `Per: ${data.persone} persone`,
-    `Ritiro: ${dateLabel}`,
-    data.note.trim() ? `Dettagli: ${data.note.trim()}` : null,
+    "Buongiorno Pasticceria L'Ôfelee,",
+    "vorrei richiedere la disponibilità per una torta/ordine:",
     "",
-    `Grazie, ${data.nome.trim()}`,
+    `🎂 Prodotto: ${data.tipo}`,
+    `👥 Per quante persone: ${data.persone}`,
+    `📅 Data di ritiro richiesta: ${dateLabel}`,
+    `👤 Nome: ${data.nome.trim()}`,
+    data.note.trim() ? `📝 Note/Dettagli: ${data.note.trim()}` : null,
   ].filter((l) => l !== null);
 
   const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;

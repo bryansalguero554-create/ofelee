@@ -14,9 +14,8 @@
   <meta property="og:locale" content="it_IT">
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 
   <script type="application/ld+json">
@@ -66,6 +65,7 @@
       <nav class="main-nav" id="main-nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#specialita">Specialità</a></li>
+          <li><a href="#galleria">Creazioni</a></li>
           <li><a href="#torte">Ordina una torta</a></li>
           <li><a href="#chi-siamo">Chi siamo</a></li>
           <li><a href="#orari">Orari &amp; Dove siamo</a></li>
@@ -277,6 +277,35 @@
       </div>
     </section>
 
+    <!-- ============ GALLERIA ============ -->
+    <section class="section section-tight" id="galleria" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Dal nostro laboratorio</p>
+          <h2 id="gallery-title">Le nostre creazioni</h2>
+          <p>Momenti dolci realizzati artigianalmente nel nostro laboratorio.</p>
+        </header>
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="img/torte.jpg" alt="Torta personalizzata" loading="lazy">
+            <figcaption class="gallery-caption">Torte da cerimonia</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="img/mignon.jpg" alt="Vassoio di pasticceria mignon" loading="lazy">
+            <figcaption class="gallery-caption">I nostri mignon</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="img/colazione.jpg" alt="Colazione artigianale" loading="lazy">
+            <figcaption class="gallery-caption">Lievitati del mattino</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="img/lievitati.jpg" alt="Grandi lievitati delle feste" loading="lazy">
+            <figcaption class="gallery-caption">Lievitati delle feste</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ ORDINA LA TUA TORTA ============ -->
     <section class="section section-cream" id="torte" aria-labelledby="order-title">
       <div class="container order-grid">
@@ -424,19 +453,18 @@
           <h2 class="h3">Dove siamo</h2>
           <address>
             <strong>Pasticceria &amp; Caffetteria L'Ôfelee</strong><br>
-            Via P. Paolo Arlati, 2<br>
+            Via Padre Paolo Arlati, 2<br>
             23807 Merate (LC)
           </address>
           <p class="where-contacts">
             <a href="tel:+390399900514">📞 039 990 0514</a>
           </p>
-          <div class="map-wrap">
-            <iframe
-              title="Mappa: Pasticceria L'Ôfelee, Via P. Paolo Arlati 2, Merate"
-              src="https://maps.google.com/maps?q=Via%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&amp;z=16&amp;output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen></iframe>
+          <div class="map-wrap" id="map">
+            <div class="map-placeholder">
+              <p><strong>Pasticceria &amp; Caffetteria L'Ôfelee</strong><br>Via Padre Paolo Arlati, 2 — Merate (LC)</p>
+              <button type="button" class="btn btn-gold btn-small" data-load-map>Mostra mappa interattiva</button>
+              <small>La mappa è fornita da Google e viene caricata solo dopo il clic.</small>
+            </div>
           </div>
           <div class="where-actions">
             <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Paolo+Arlati+2+23807+Merate+LC" target="_blank" rel="noopener">Indicazioni stradali</a>
@@ -452,20 +480,24 @@
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div>
+      <div class="footer-brand">
         <p class="brand-name">L'Ôfelee</p>
-        <p>Pasticceria &amp; Caffetteria<br>Via P. Paolo Arlati, 2 · 23807 Merate (LC)</p>
+        <p>Pasticceria &amp; Caffetteria Artigianale</p>
       </div>
-      <div>
-        <p><a href="tel:+390399900514">039 990 0514</a></p>
-        <!-- TODO: sostituire con l'URL diretto della pagina (facebook.com/nomepagina) -->
-        <p><a href="https://www.facebook.com/search/top?q=Pasticceria%20%26%20Caffetteria%20L%27%C3%94felee" target="_blank" rel="noopener" data-facebook-link>Seguici su Facebook</a></p>
-      </div>
-      <div class="footer-legal">
-        <p>© <span data-year>2026</span> L'Ôfelee di Mingotti Silvia — Via Padre Paolo Arlati, 2, Merate (LC)</p>
+      <div class="footer-info">
+        <p><strong>L'Ôfelee di Mingotti Silvia</strong></p>
+        <p>Via Padre Paolo Arlati, 2 — 23807 Merate (LC)</p>
         <!-- TODO: inserire la P.IVA fornita dal titolare -->
-        <p>P.IVA: [Da confermare con il titolare] | Tel: 039 990 0514</p>
-        <p><button type="button" class="link-btn" data-open-dialog="privacy-dialog">Privacy</button> · <button type="button" class="link-btn" data-open-dialog="cookie-dialog">Cookie</button></p>
+        <p>P.IVA: <em>[in aggiornamento]</em> | Tel: <a href="tel:+390399900514">+39 039 990 0514</a></p>
+      </div>
+      <div class="footer-links">
+        <!-- TODO: sostituire con l'URL diretto della pagina (facebook.com/nomepagina) -->
+        <a href="https://www.facebook.com/search/top?q=Pasticceria%20%26%20Caffetteria%20L%27%C3%94felee" target="_blank" rel="noopener">Pagina Facebook</a>
+        <button type="button" class="link-btn" data-open-dialog="privacy-dialog">Privacy Policy</button>
+        <button type="button" class="link-btn" data-open-dialog="cookie-dialog">Cookie Policy</button>
+      </div>
+      <div class="footer-bottom">
+        <small>© <span data-year>2026</span> L'Ôfelee. Tutti i diritti riservati.</small>
       </div>
     </div>
   </footer>
@@ -477,9 +509,10 @@
     </form>
     <h2 id="privacy-title" class="h3">Informativa Privacy</h2>
     <p class="dialog-ref">art. 13 Reg. UE 2016/679</p>
-    <p>Questo sito ha scopo puramente informativo. Non raccoglie né memorizza dati personali dell'utente in alcun database.</p>
-    <p>L'inoltro di richieste tramite il pulsante WhatsApp comporta il reindirizzamento volontario all'applicazione di messaggistica di terze parti (WhatsApp), regolata dai rispettivi termini di servizio e privacy.</p>
-    <p><strong>Titolare del trattamento:</strong> L'Ofelee di Mingotti Silvia, Via P. Arlati 2, Merate (LC).</p>
+    <p>Questo sito ha scopo puramente illustrativo. Non acquisisce, non memorizza e non tratta dati personali in alcun database o server remoto.</p>
+    <p>La composizione della richiesta d'ordine rimanda direttamente all'applicazione WhatsApp dell'utente verso il recapito dell'attività, secondo i termini di servizio di WhatsApp Ireland Ltd.</p>
+    <p><strong>Titolare:</strong> L'Ofelee di Mingotti Silvia – Via P. Arlati 2, Merate (LC).</p>
+    <form method="dialog"><button class="btn btn-gold btn-small">Chiudi</button></form>
   </dialog>
 
   <dialog class="legal-dialog" id="cookie-dialog" aria-labelledby="cookie-title">
@@ -487,8 +520,9 @@
       <button class="dialog-close" aria-label="Chiudi">×</button>
     </form>
     <h2 id="cookie-title" class="h3">Informativa Cookie</h2>
-    <p>Questo sito non utilizza cookie di profilazione né cookie analitici di terze parti traccianti.</p>
-    <p>Vengono eventualmente utilizzati esclusivamente cookie tecnici strettamente necessari al funzionamento del sito e alla visualizzazione delle mappe fornite da Google Maps.</p>
+    <p>Questo sito <strong>non fa uso di cookie di profilazione o tracciamento</strong>.</p>
+    <p>I caratteri tipografici e le risorse sono erogati localmente. La mappa esterna (Google Maps) si attiva solo su esplicita interazione dell'utente, garantendo la navigazione libera da cookie traccianti di terze parti.</p>
+    <form method="dialog"><button class="btn btn-gold btn-small">Chiudi</button></form>
   </dialog>
 
   <!-- Barra azioni rapide (solo smartphone) -->

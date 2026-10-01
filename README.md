@@ -16,7 +16,7 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 1. **Foto**: inserire le immagini in `img/` (vedi sotto). Finché mancano si vede un segnaposto color caramello.
 2. **WhatsApp**: in `js/main.js` (`CONFIG.whatsapp`) mettere il numero in formato internazionale senza "+" (es. `393XXXXXXXXX`).
    Per i test usare il proprio cellulare; dopo la demo il fisso del negozio (se attivo su WhatsApp Business) o un cellulare dedicato.
-3. **P.IVA**: nel footer sostituire `[Da confermare con il titolare]`.
+3. **P.IVA**: nel footer sostituire `[in aggiornamento]`.
 4. **Facebook**: il link nel footer apre la ricerca della pagina; sostituirlo con l'URL diretto (`facebook.com/...`).
 
 ## Foto in `img/`
@@ -25,10 +25,10 @@ Bastano **5 foto** per avere il sito completo:
 | File | Contenuto | Dove compare |
 |---|---|---|
 | `hero-bg.jpg` | Bancone o vetrina della pasticceria (orizzontale, ≥ 1920 px) | Copertina e "Chi siamo" |
-| `colazione.jpg` | Croissant / brioche e caffè | Tutte le card della Colazione |
-| `mignon.jpg` | Vassoio di cannoncini e bignè | Tutte le card Mignon |
-| `torte.jpg` | Millefoglie o crostata di frutta | Tutte le card Torte |
-| `lievitati.jpg` | Panettone o colomba a fette | Tutte le card Lievitati |
+| `colazione.jpg` | Croissant / brioche e caffè | Card della Colazione e galleria |
+| `mignon.jpg` | Vassoio di cannoncini e bignè | Card Mignon e galleria |
+| `torte.jpg` | Millefoglie o crostata di frutta | Card Torte e galleria |
+| `lievitati.jpg` | Panettone o colomba a fette | Card Lievitati e galleria |
 
 Quando arrivano le foto reali si può dare a ogni prodotto la sua immagine, che ha la precedenza su quella di categoria:
 `laboratorio.jpg`, `croissant.jpg`, `brioche.jpg`, `caffe.jpg`, `cannoncini.jpg`, `bigne.jpg`, `tartellette.jpg`,
@@ -38,5 +38,6 @@ Le card ritagliano in 4:3: consigliati 800×600 px, JPG compressi (< 200 KB).
 Se si usano foto stock (Unsplash/Pexels) per la demo, vanno sostituite con quelle reali prima della pubblicazione.
 
 ## Privacy e Cookie
-Le informative si aprono in una finestra dal footer. Nota: la mappa di Google Maps e i font di Google Fonts
-sono servizi di terze parti; prima della messa online conviene farle verificare.
+Le informative si aprono in una finestra dal footer. Il sito non contatta servizi esterni finché
+l'utente non lo chiede: i font sono ospitati in `fonts/` (licenza SIL OFL) e la mappa di Google
+si carica solo dopo il clic su "Mostra mappa interattiva". Il testo finale va comunque fatto verificare.
