@@ -105,14 +105,68 @@ document.querySelectorAll(".hero-media img, .about-media img, .card-img img, .ga
   if (img.complete && img.naturalWidth === 0) onFail();
 });
 
-/* ---------- Mappa caricata solo su richiesta (nessun contatto con Google prima) ---------- */
-document.querySelector("[data-load-map]")?.addEventListener("click", () => {
+/* ---------- Mappa interattiva (caricata solo su consenso) ----------
+   Nessun contatto con Google finché il visitatore non clicca; con la
+   spunta "Mostra sempre" la scelta viene ricordata su questo dispositivo. */
+const MAP_PREF_KEY = "ofelee-map-consent";
+const mapBox = document.getElementById("map");
+
+function loadMap() {
   const iframe = document.createElement("iframe");
   iframe.title = "Mappa: Pasticceria L'Ôfelee, Via Padre Paolo Arlati 2, Merate";
   iframe.src = "https://maps.google.com/maps?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&z=16&output=embed";
   iframe.allowFullscreen = true;
   iframe.referrerPolicy = "no-referrer-when-downgrade";
-  document.getElementById("map").replaceChildren(iframe);
+  mapBox.replaceChildren(iframe);
+}
+
+const readPref = () => { try { return localStorage.getItem(MAP_PREF_KEY) === "1"; } catch { return false; } };
+const savePref = () => { try { localStorage.setItem(MAP_PREF_KEY, "1"); } catch { /* storage non disponibile */ } };
+
+document.querySelector("[data-load-map]")?.addEventListener("click", () => {
+  if (document.querySelector("[data-map-remember]")?.checked) savePref();
+  loadMap();
+});
+
+if (mapBox && readPref()) {
+  // Consenso già dato: carica la mappa quando la sezione si avvicina.
+  if ("IntersectionObserver" in window) {
+    const mapIo = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { mapIo.disconnect(); loadMap(); }
+    }, { rootMargin: "300px" });
+    mapIo.observe(mapBox);
+  } else {
+    loadMap();
+  }
+}
+
+/* ---------- Indicazioni: scelta dell'app di navigazione ---------- */
+const directionsDialog = document.getElementById("directions-dialog");
+const ADDRESS = "Via Padre Paolo Arlati, 2, 23807 Merate (LC)";
+
+if (/Android/i.test(navigator.userAgent)) {
+  directionsDialog.querySelector("[data-android-only]").hidden = false;
+}
+
+document.querySelectorAll("[data-directions]").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    directionsDialog.showModal();
+  });
+});
+
+directionsDialog.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => directionsDialog.close()));
+directionsDialog.addEventListener("click", (e) => { if (e.target === directionsDialog) directionsDialog.close(); });
+
+document.querySelector("[data-copy-address]").addEventListener("click", async () => {
+  const label = document.querySelector("[data-copy-label]");
+  try {
+    await navigator.clipboard.writeText(ADDRESS);
+    label.textContent = "Indirizzo copiato ✓";
+  } catch {
+    label.textContent = ADDRESS;
+  }
+  setTimeout(() => { label.textContent = "Copia indirizzo"; }, 2500);
 });
 
 /* ---------- Informative Privacy e Cookie ---------- */

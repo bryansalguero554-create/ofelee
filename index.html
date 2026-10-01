@@ -463,11 +463,12 @@
             <div class="map-placeholder">
               <p><strong>Pasticceria &amp; Caffetteria L'Ôfelee</strong><br>Via Padre Paolo Arlati, 2 — Merate (LC)</p>
               <button type="button" class="btn btn-gold btn-small" data-load-map>Mostra mappa interattiva</button>
+              <label class="map-remember"><input type="checkbox" data-map-remember> Mostra sempre la mappa su questo dispositivo</label>
               <small>La mappa è fornita da Google e viene caricata solo dopo il clic.</small>
             </div>
           </div>
           <div class="where-actions">
-            <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Paolo+Arlati+2+23807+Merate+LC" target="_blank" rel="noopener">Indicazioni stradali</a>
+            <a class="btn btn-gold btn-small" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener" data-directions>Indicazioni stradali</a>
             <a class="btn btn-ghost-light btn-small" href="tel:+390399900514">Chiama</a>
           </div>
           <p class="hours-note">Parcheggio comodo nelle vicinanze, ideale per il ritiro rapido degli ordini.</p>
@@ -503,6 +504,21 @@
   </footer>
 
   <!-- ============ INFORMATIVE ============ -->
+  <dialog class="directions-dialog" id="directions-dialog" aria-labelledby="directions-title">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Chiudi">×</button>
+    </form>
+    <h2 id="directions-title" class="h3">Come vuoi raggiungerci?</h2>
+    <p class="directions-address">Via Padre Paolo Arlati, 2 — 23807 Merate (LC)</p>
+    <ul class="directions-list">
+      <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener"><span class="app-dot" style="--c:#34a853">G</span>Google Maps</a></li>
+      <li><a href="https://maps.apple.com/?daddr=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC,+Italia&amp;dirflg=d" target="_blank" rel="noopener"><span class="app-dot" style="--c:#555">A</span>Apple Mappe</a></li>
+      <li><a href="https://waze.com/ul?q=Via%20Padre%20Paolo%20Arlati%202%2C%2023807%20Merate%20LC&amp;navigate=yes" target="_blank" rel="noopener"><span class="app-dot" style="--c:#33ccff">W</span>Waze</a></li>
+      <li data-android-only hidden><a href="geo:0,0?q=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC"><span class="app-dot" style="--c:var(--gold)">…</span>Altra app installata</a></li>
+      <li><button type="button" data-copy-address><span class="app-dot" style="--c:var(--moka)">⧉</span><span data-copy-label>Copia indirizzo</span></button></li>
+    </ul>
+  </dialog>
+
   <dialog class="legal-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
     <form method="dialog">
       <button class="dialog-close" aria-label="Chiudi">×</button>
@@ -522,6 +538,7 @@
     <h2 id="cookie-title" class="h3">Informativa Cookie</h2>
     <p>Questo sito <strong>non fa uso di cookie di profilazione o tracciamento</strong>.</p>
     <p>I caratteri tipografici e le risorse sono erogati localmente. La mappa esterna (Google Maps) si attiva solo su esplicita interazione dell'utente, garantendo la navigazione libera da cookie traccianti di terze parti.</p>
+    <p>Se l'utente sceglie "Mostra sempre la mappa", la preferenza viene salvata solo nella memoria locale del proprio browser (strumento tecnico, non trasmesso a terzi).</p>
     <form method="dialog"><button class="btn btn-gold btn-small">Chiudi</button></form>
   </dialog>
 
@@ -532,7 +549,7 @@
       Chiama
     </a>
     <a href="#torte" class="mobile-bar-main">Ordina una torta</a>
-    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Paolo+Arlati+2+23807+Merate+LC" target="_blank" rel="noopener">
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Via+Padre+Paolo+Arlati+2,+23807+Merate+LC" target="_blank" rel="noopener" data-directions>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
       Mappa
     </a>
