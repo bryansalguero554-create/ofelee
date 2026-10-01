@@ -13,19 +13,30 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 - Barra azioni rapide su smartphone (Chiama · Ordina · Mappa) e dati strutturati Schema.org per Google.
 
 ## Da completare prima della pubblicazione
-1. **Foto**: inserire in `img/` i file elencati sotto (finché mancano si vede un segnaposto color caramello).
-2. **WhatsApp**: verificare il numero in `js/main.js` (`CONFIG.whatsapp`). Ora è impostato il fisso 039 990 0514, che funziona solo se registrato su WhatsApp Business.
-3. **Facebook**: sostituire il link generico nel footer (`data-facebook-link`) con quello della pagina reale.
-4. **Footer**: P.IVA, pagine Privacy e Cookie.
+1. **Foto**: inserire le immagini in `img/` (vedi sotto). Finché mancano si vede un segnaposto color caramello.
+2. **WhatsApp**: in `js/main.js` (`CONFIG.whatsapp`) mettere il numero in formato internazionale senza "+" (es. `393XXXXXXXXX`).
+   Per i test usare il proprio cellulare; dopo la demo il fisso del negozio (se attivo su WhatsApp Business) o un cellulare dedicato.
+3. **P.IVA**: nel footer sostituire `[Da confermare con il titolare]`.
+4. **Facebook**: il link nel footer apre la ricerca della pagina; sostituirlo con l'URL diretto (`facebook.com/...`).
 
-## Foto attese in `img/`
-| File | Contenuto |
-|---|---|
-| `hero.jpg` | Banco dolci o torta d'autore (orizzontale, almeno 1920 px) |
-| `laboratorio.jpg` | Laboratorio o interno del locale (verticale) |
-| `croissant.jpg`, `brioche.jpg`, `caffe.jpg` | Colazione |
-| `cannoncini.jpg`, `bigne.jpg`, `tartellette.jpg` | Pasticceria mignon |
-| `millefoglie.jpg`, `saint-honore.jpg`, `crostata.jpg`, `torta-compleanno.jpg` | Torte |
-| `panettone.jpg`, `chiacchiere.jpg`, `colomba.jpg` | Grandi lievitati |
+## Foto in `img/`
+Bastano **5 foto** per avere il sito completo:
 
-Le foto delle card vengono ritagliate in 4:3; consigliati 800×600 px, JPG compressi (< 200 KB).
+| File | Contenuto | Dove compare |
+|---|---|---|
+| `hero-bg.jpg` | Bancone o vetrina della pasticceria (orizzontale, ≥ 1920 px) | Copertina e "Chi siamo" |
+| `colazione.jpg` | Croissant / brioche e caffè | Tutte le card della Colazione |
+| `mignon.jpg` | Vassoio di cannoncini e bignè | Tutte le card Mignon |
+| `torte.jpg` | Millefoglie o crostata di frutta | Tutte le card Torte |
+| `lievitati.jpg` | Panettone o colomba a fette | Tutte le card Lievitati |
+
+Quando arrivano le foto reali si può dare a ogni prodotto la sua immagine, che ha la precedenza su quella di categoria:
+`laboratorio.jpg`, `croissant.jpg`, `brioche.jpg`, `caffe.jpg`, `cannoncini.jpg`, `bigne.jpg`, `tartellette.jpg`,
+`millefoglie.jpg`, `saint-honore.jpg`, `crostata.jpg`, `torta-compleanno.jpg`, `panettone.jpg`, `chiacchiere.jpg`, `colomba.jpg`.
+
+Le card ritagliano in 4:3: consigliati 800×600 px, JPG compressi (< 200 KB).
+Se si usano foto stock (Unsplash/Pexels) per la demo, vanno sostituite con quelle reali prima della pubblicazione.
+
+## Privacy e Cookie
+Le informative si aprono in una finestra dal footer. Nota: la mappa di Google Maps e i font di Google Fonts
+sono servizi di terze parti; prima della messa online conviene farle verificare.

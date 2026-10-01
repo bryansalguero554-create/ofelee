@@ -4,7 +4,8 @@
 
 const CONFIG = {
   // Numero WhatsApp in formato internazionale, senza "+" né spazi.
-  // TODO: verificare con il titolare il numero WhatsApp Business corretto.
+  // Per i test: mettere qui il proprio cellulare (es. "393XXXXXXXXX").
+  // Dopo la demo: fisso del negozio se attivo su WhatsApp Business, oppure il cellulare dedicato.
   whatsapp: "390399900514",
   timeZone: "Europe/Rome",
   // Orari per giorno della settimana (0 = domenica). Formato "HH:MM".
@@ -87,11 +88,29 @@ const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-/* ---------- Immagini mancanti: mostra il segnaposto ---------- */
+/* ---------- Immagini mancanti ----------
+   Se manca la foto del singolo prodotto si usa quella della categoria
+   (data-fallback, es. img/colazione.jpg); se manca anche quella resta
+   il segnaposto. */
 document.querySelectorAll(".hero-media img, .about-media img, .card-img img").forEach((img) => {
-  const markMissing = () => img.classList.add("img-missing");
-  if (img.complete && img.naturalWidth === 0) markMissing();
-  else img.addEventListener("error", markMissing);
+  const onFail = () => {
+    const fallback = img.dataset.fallback;
+    if (fallback && !img.src.endsWith(fallback)) {
+      img.src = fallback;
+    } else {
+      img.classList.add("img-missing");
+    }
+  };
+  img.addEventListener("error", onFail);
+  if (img.complete && img.naturalWidth === 0) onFail();
+});
+
+/* ---------- Informative Privacy e Cookie ---------- */
+document.querySelectorAll("[data-open-dialog]").forEach((btn) => {
+  const dialog = document.getElementById(btn.dataset.openDialog);
+  btn.addEventListener("click", () => dialog.showModal());
+  // Chiusura cliccando fuori dal riquadro.
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
 });
 
 /* ---------- Tabs specialità ---------- */
