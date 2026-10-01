@@ -10,6 +10,8 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
   I lievitati si attivano da soli in base al periodo (Natale, Carnevale ambrosiano, Pasqua).
 - **Ordina la tua torta**: prenotazione telefonica con pulsante "Chiamaci ora" e stato aperto/chiuso in tempo reale.
 - **Chi siamo**, servizi, **orari** con il giorno corrente evidenziato, **mappa** e indicazioni.
+- **Animazione di caricamento**: un cupcake si riempie di panna, arriva la ciliegina e il sito si apre (più breve dalla seconda pagina; disattivata con "riduci movimento").
+- **Pagina 404** (`404.html`) con il cupcake morsicato, autonoma e funzionante a qualsiasi percorso.
 - Barra azioni rapide su smartphone (Chiama · Ordina · Mappa) e dati strutturati Schema.org per Google.
 
 ## Da completare prima della pubblicazione

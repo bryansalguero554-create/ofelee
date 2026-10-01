@@ -20,6 +20,34 @@ const CONFIG = {
 
 const DAY_NAMES = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"];
 
+/* ---------- Animazione di caricamento ----------
+   Quando la pagina ha finito di caricare (e la panna ha riempito il
+   cupcake) cade la ciliegina, poi il velo si alza. Dalla seconda pagina
+   vista nella stessa sessione l'animazione è più breve. */
+(function pageLoader() {
+  const loader = document.getElementById("loader");
+  if (!loader) return;
+
+  let seen = false;
+  try { seen = sessionStorage.getItem("ofelee-loader") === "1"; } catch { /* storage non disponibile */ }
+  const minVisible = seen ? 300 : 1200; // ms dall'inizio della navigazione
+
+  const finish = () => {
+    const wait = Math.max(0, minVisible - performance.now());
+    setTimeout(() => {
+      loader.classList.add("is-loaded");
+      setTimeout(() => {
+        loader.classList.add("is-hidden");
+        setTimeout(() => loader.remove(), 600);
+      }, seen ? 350 : 950);
+      try { sessionStorage.setItem("ofelee-loader", "1"); } catch { /* storage non disponibile */ }
+    }, wait);
+  };
+
+  if (document.readyState === "complete") finish();
+  else window.addEventListener("load", finish, { once: true });
+})();
+
 /* ---------- Utility ---------- */
 
 // Data/ora correnti a Merate, indipendentemente dal fuso del visitatore.

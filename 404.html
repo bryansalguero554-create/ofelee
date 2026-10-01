@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Pagina autonoma: stile e script sono interni (autorizzati per impronta
+       nella Content Security Policy) perché la 404 può essere servita a
+       qualsiasi profondità di percorso, dove i link relativi non funzionano. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-f3Fd+GfYGqARiHkv0Qtm1TAbMPvxc7vy8BVyTqFK0kM='; style-src 'self' 'sha256-7vh2T+I5FBb/bbHvleWuIoTACLUHQDZBkM7l4BNCIb0='; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#4b5a26">
+  <title>Pagina non trovata | L'Ôfelee – Merate</title>
+  <style>
+:root{--cream:#faf9f5;--cream-2:#eff1e8;--olive:#4b5a26;--olive-dark:#262c1b;--accent:#c2185b;--accent-dark:#a01149;--accent-soft:#f6c3d7;--text:#2d3123;--muted:#676b5c;--line:#e3e4d9;--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;min-height:100%;display:flex;flex-direction:column;font-family:var(--sans);color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+header{padding:20px 16px;text-align:center}
+.brand{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--olive);text-decoration:none}
+.brand span{color:var(--accent)}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 16px 48px}
+.code{display:flex;align-items:center;justify-content:center;gap:4px;font-family:var(--serif);font-weight:700;font-size:clamp(7rem,26vw,12rem);line-height:1;color:var(--olive)}
+.code svg{width:clamp(7rem,24vw,11rem);height:auto;overflow:visible;margin:0 -4px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.8rem);color:var(--olive);margin:18px 0 8px;line-height:1.15}
+p{max-width:480px;margin:0 auto 26px;color:var(--muted);line-height:1.6}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9em 1.6em;border-radius:999px;font:600 .95rem var(--sans);text-decoration:none;border:2px solid transparent;transition:background .2s,color .2s,transform .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-main{background:var(--accent);color:#fff}
+.btn-main:hover{background:var(--accent-dark)}
+.btn-line{border-color:var(--olive);color:var(--olive)}
+.btn-line:hover{background:var(--olive);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:20px 16px;text-align:center;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--olive);font-weight:600;text-decoration:none}
+/* animazioni del cupcake */
+.cc,.cc-tear,.cc-crumb,.cc-eye{transform-box:fill-box}
+.cc{transform-origin:50% 100%;animation:sway 3.2s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-4px)}}
+.cc-eye{transform-origin:50% 50%;animation:blink 4s ease-in-out infinite}
+@keyframes blink{0%,46%,52%,100%{transform:scaleY(1)}49%{transform:scaleY(.1)}}
+.cc-tear{transform-origin:50% 0;animation:tear 2.4s ease-in infinite}
+@keyframes tear{0%,30%{transform:translateY(0) scale(0);opacity:0}40%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(26px) scale(.8);opacity:0}}
+.cc-crumb{animation:crumb 2.8s ease-in infinite}
+.cc-crumb:nth-of-type(2){animation-delay:.9s}
+.cc-crumb:nth-of-type(3){animation-delay:1.7s}
+@keyframes crumb{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(60px) rotate(120deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="./" data-home>L'<span>Ô</span>felee</a>
+  </header>
+
+  <main>
+    <div class="code" aria-hidden="true">
+      <span>4</span>
+      <!-- Il cupcake triste, con un morso nella panna, fa da "0" -->
+      <svg viewBox="0 0 120 150">
+        <g class="crumbs">
+          <circle class="cc-crumb" cx="96" cy="44" r="2.6" fill="#e7dfd2"/>
+          <circle class="cc-crumb" cx="104" cy="52" r="2" fill="#e7dfd2"/>
+          <circle class="cc-crumb" cx="92" cy="58" r="2.2" fill="#e7dfd2"/>
+        </g>
+        <g class="cc">
+          <g>
+            <path d="M16 74 C14 56 30 48 44 50 C48 36 72 32 82 44 C98 42 108 58 104 74 Z" fill="#fffdf8" stroke="#e7dfd2" stroke-width="2"/>
+            <path d="M36 52 C38 38 56 28 68 34 C80 30 90 42 84 52 Z" fill="#fffdf8" stroke="#e7dfd2" stroke-width="2"/>
+            <!-- il morso -->
+            <circle cx="98" cy="50" r="10" fill="#faf9f5"/>
+            <circle cx="88" cy="42" r="8" fill="#faf9f5"/>
+            <rect x="30" y="60" width="7" height="2.6" rx="1.3" fill="#c2185b" transform="rotate(-25 33 61)"/>
+            <rect x="52" y="44" width="7" height="2.6" rx="1.3" fill="#8a9a4b" transform="rotate(30 55 45)"/>
+            <rect x="66" y="62" width="7" height="2.6" rx="1.3" fill="#f6c3d7" transform="rotate(15 69 63)"/>
+          </g>
+          <path d="M18 74 H102 L93 128 Q60 135 27 128 Z" fill="#6b7a3a"/>
+          <path d="M38 76 L42 130 M60 76 V132 M82 76 L78 130" stroke="#566330" stroke-width="3"/>
+          <!-- occhi tristi -->
+          <g class="cc-eye">
+            <ellipse cx="45" cy="96" rx="4.5" ry="5.5" fill="#262c1b"/>
+            <ellipse cx="75" cy="96" rx="4.5" ry="5.5" fill="#262c1b"/>
+          </g>
+          <path d="M37 86 L50 89 M83 86 L70 89" stroke="#262c1b" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M51 114 Q60 106 69 114" fill="none" stroke="#262c1b" stroke-width="3" stroke-linecap="round"/>
+          <path class="cc-tear" d="M79 101 Q82 106 79 109 Q76 106 79 101 Z" fill="#9fd3e8"/>
+          <circle cx="36" cy="106" r="5" fill="#f6c3d7" opacity=".85"/>
+          <circle cx="84" cy="106" r="5" fill="#f6c3d7" opacity=".85"/>
+        </g>
+        <ellipse cx="60" cy="140" rx="30" ry="3.5" fill="#262c1b" opacity=".12"/>
+      </svg>
+      <span>4</span>
+    </div>
+
+    <h1>Ops! Questa pagina è stata mangiata</h1>
+    <p>La pagina che cerchi non esiste più, o forse non è mai uscita dal forno. Il resto della vetrina però è ancora pieno di dolci.</p>
+
+    <div class="actions">
+      <a class="btn btn-main" href="./" data-home>Torna alla home</a>
+      <a class="btn btn-line" href="./#specialita" data-home-hash="specialita">Scopri le specialità</a>
+      <a class="btn btn-line" href="tel:+390399900514">Chiamaci</a>
+    </div>
+  </main>
+
+  <footer>
+    Pasticceria &amp; Caffetteria L'Ôfelee · Via Padre Paolo Arlati, 2 · Merate (LC) · <a href="tel:+390399900514">039 990 0514</a>
+  </footer>
+
+  <script>
+(function(){
+  // La home è nella cartella del sito: su GitHub Pages "/progetto-2/", altrove "/".
+  var m = location.pathname.match(/^\/progetto-2(\/|$)/);
+  var base = m ? "/progetto-2/" : "/";
+  document.querySelectorAll("[data-home]").forEach(function(a){ a.href = base; });
+  document.querySelectorAll("[data-home-hash]").forEach(function(a){ a.href = base + "#" + a.getAttribute("data-home-hash"); });
+  var fonts = document.createElement("link");
+  fonts.rel = "stylesheet"; fonts.href = base + "css/fonts.css";
+  document.head.appendChild(fonts);
+  var icon = document.createElement("link");
+  icon.rel = "icon"; icon.type = "image/svg+xml"; icon.href = base + "img/favicon.svg";
+  document.head.appendChild(icon);
+})();
+  </script>
+</body>
+</html>

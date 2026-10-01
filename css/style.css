@@ -865,3 +865,94 @@ img.img-missing { visibility: hidden; }
 .order-call-tips ul { margin: 0; padding-left: 1.2em; color: var(--text); }
 .order-call-tips li { margin-bottom: 4px; }
 .order-call-tips li::marker { color: var(--accent); }
+
+/* =========================================================
+   Animazione di caricamento: il cupcake si riempie di panna,
+   arriva la ciliegina, fa l'occhiolino e il velo si alza.
+   ========================================================= */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: var(--cream);
+  transition: opacity .55s ease, visibility .55s ease, transform .55s ease;
+  /* Rete di sicurezza: se lo script non parte, il velo sparisce comunque */
+  animation: loader-failsafe 0s linear 6s forwards;
+}
+.loader.is-hidden { opacity: 0; visibility: hidden; transform: translateY(-24px); pointer-events: none; }
+@keyframes loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+.loader-cupcake { width: 132px; height: auto; overflow: visible; }
+.cc-body, .cc-shadow, .cc-frosting, .cc-eyes, .cc-smile, .cc-cherry { transform-box: fill-box; }
+
+/* saltella mentre aspetta */
+.cc-body { transform-origin: 50% 100%; animation: cc-bounce .9s ease-in-out infinite; }
+.cc-shadow { transform-origin: 50% 50%; animation: cc-shadow .9s ease-in-out infinite; }
+@keyframes cc-bounce {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  45% { transform: translateY(-10px) scale(.98, 1.02); }
+  90% { transform: translateY(0) scale(1.04, .96); }
+}
+@keyframes cc-shadow { 0%, 100% { transform: scaleX(1); } 45% { transform: scaleX(.8); opacity: .07; } }
+
+/* la panna sale come una barra di avanzamento */
+.cc-frosting { transform-origin: 50% 100%; animation: cc-fill 1.1s cubic-bezier(.3,.8,.4,1) both; }
+@keyframes cc-fill {
+  0% { transform: scaleY(0); }
+  60% { transform: scaleY(.7); }
+  100% { transform: scaleY(1); }
+}
+
+/* sbatte le palpebre */
+.cc-eyes { transform-origin: 50% 50%; animation: cc-blink 2.6s ease-in-out infinite; }
+@keyframes cc-blink { 0%, 44%, 52%, 100% { transform: scaleY(1); } 48% { transform: scaleY(.1); } }
+
+/* la ciliegina aspetta fuori scena */
+.cc-cherry { transform: translateY(-140px); opacity: 0; }
+
+.loader-text {
+  position: relative;
+  margin: 0;
+  min-height: 1.6em;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--olive);
+  text-align: center;
+}
+.loader-done {
+  position: absolute;
+  left: 0; right: 0;
+  opacity: 0;
+  color: var(--accent);
+}
+
+/* caricamento finito */
+.loader.is-loaded .cc-body { animation: cc-joy .6s ease-out both; }
+.loader.is-loaded .cc-cherry { animation: cc-drop .55s cubic-bezier(.3,1.5,.6,1) forwards; }
+.loader.is-loaded .cc-eyes { animation: cc-wink .5s ease-in-out .35s both; }
+.loader.is-loaded .cc-smile { animation: cc-grin .4s ease-out .3s both; transform-origin: 50% 0; }
+.loader.is-loaded .loader-wait { opacity: 0; transition: opacity .2s; }
+.loader.is-loaded .loader-done { opacity: 1; transition: opacity .3s .2s; }
+@keyframes cc-drop {
+  0% { transform: translateY(-140px); opacity: 1; }
+  70% { transform: translateY(4px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes cc-joy {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-14px) rotate(-4deg); }
+  70% { transform: translateY(0) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@keyframes cc-wink { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.15); } }
+@keyframes cc-grin { to { transform: scale(1.25, 1.35); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none; }
+}
