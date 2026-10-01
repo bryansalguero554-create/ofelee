@@ -123,7 +123,9 @@ const STOCK_PHOTOS = {
 document.querySelectorAll(".hero-media img, .about-media img, .card-img img, .gallery-item img").forEach((img) => {
   const local = img.getAttribute("src");
   const fallback = img.dataset.fallback;
-  const queue = [fallback, STOCK_PHOTOS[local], STOCK_PHOTOS[fallback]]
+  // In coda anche tutte le altre foto stock: se un link non funziona,
+  // il riquadro prende la prima foto disponibile invece di restare vuoto.
+  const queue = [fallback, STOCK_PHOTOS[local], STOCK_PHOTOS[fallback], ...Object.values(STOCK_PHOTOS)]
     .filter((src, i, all) => src && src !== local && all.indexOf(src) === i);
 
   const onFail = () => {
