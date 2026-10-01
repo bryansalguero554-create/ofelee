@@ -810,5 +810,5 @@ img.img-missing { visibility: hidden; }
 .crop-panettone  { object-position: 50% 62%; }
 .crop-chiacchiere{ object-position: 50% 62%; --zoom: 1.6; --fx: 80%; --fy: 55%; }
 .crop-colomba    { object-position: 50% 62%; --zoom: 1.5; --fx: 35%; --fy: 45%; }
-.gallery-item:nth-child(3) img { object-position: 75% 50%; }
+.gallery-item:nth-child(3) img { object-position: 35% 50%; }
 .gallery-item:nth-child(4) img { object-position: 50% 60%; }
