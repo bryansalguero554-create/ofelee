@@ -332,5 +332,188 @@ if ("IntersectionObserver" in window) {
   targets.forEach((el) => io.observe(el));
 }
 
+/* =========================================================
+   Effetti 3D e schede prodotto
+   ========================================================= */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+/* ---------- Dati delle schede prodotto ----------
+   Ingredienti indicativi (ricette tipiche): da far confermare al titolare. */
+const PRODUCTS = {
+  croissant: { kicker: "La Colazione", title: "Croissant farciti", img: "img/colazione.jpg",
+    desc: "Sfoglia al burro bicolore, al pistacchio o al lampone, farcita al momento con creme generose.",
+    ingredients: ["Farina", "Burro", "Latte", "Uova", "Zucchero", "Lievito", "Crema al pistacchio", "Granella di pistacchio"] },
+  brioche: { kicker: "La Colazione", title: "Brioche artigianali", img: "img/brioche.jpg",
+    desc: "Impasti a lunga lievitazione sfornati ogni mattina: alla crema, alle nocciole, girelle e danesi alla frutta.",
+    ingredients: ["Farina", "Burro", "Uova", "Zucchero", "Latte", "Lievito", "Crema pasticcera", "Nocciole"] },
+  caffe: { kicker: "La Colazione", title: "Caffetteria", img: "img/caffe.jpg",
+    desc: "Espresso, cappuccino e cioccolata calda con panna, da gustare al banco o ai tavolini.",
+    ingredients: ["Caffè espresso", "Latte fresco", "Cacao", "Cioccolato", "Panna montata"] },
+  cannoncini: { kicker: "Pasticceria Mignon", title: "Cannoncini", img: "img/cannoncini.jpg",
+    desc: "Sfoglia croccante riempita al momento con la nostra crema pasticcera.",
+    ingredients: ["Pasta sfoglia", "Burro", "Crema pasticcera", "Latte", "Uova", "Zucchero", "Vaniglia", "Granella di pistacchio", "Zucchero a velo"] },
+  bigne: { kicker: "Pasticceria Mignon", title: "Bignè", img: "img/bigne.jpg",
+    desc: "Pasta choux leggera, ripiena di chantilly o ricoperta di cioccolato fondente.",
+    ingredients: ["Farina", "Burro", "Uova", "Panna", "Crema pasticcera", "Cioccolato fondente", "Zucchero a velo"] },
+  tartellette: { kicker: "Pasticceria Mignon", title: "Tartellette alla frutta", img: "img/tartellette.jpg",
+    desc: "Frolla friabile, crema pasticcera e frutti di bosco freschi.",
+    ingredients: ["Pasta frolla", "Burro", "Crema pasticcera", "Lamponi", "Mirtilli", "More", "Zucchero a velo"] },
+  millefoglie: { kicker: "Torte & Cerimonie", title: "Millefoglie", img: "img/torte.jpg",
+    desc: "Strati di sfoglia caramellata, ciuffi di chantilly, fragole fresche e cialda di caramello.",
+    ingredients: ["Pasta sfoglia", "Burro", "Crema chantilly", "Panna", "Fragole", "Caramello", "Zucchero a velo"] },
+  "saint-honore": { kicker: "Torte & Cerimonie", title: "Saint Honoré", img: "img/saint-honore.jpg",
+    desc: "Base di sfoglia, corona di bignè caramellati e chantilly a ciuffi.",
+    ingredients: ["Pasta sfoglia", "Pasta choux", "Crema pasticcera", "Panna", "Caramello", "Uova", "Zucchero"] },
+  crostata: { kicker: "Torte & Cerimonie", title: "Crostate di frutta fresca", img: "img/crostata.jpg",
+    desc: "Frolla artigianale, crema pasticcera e fragole fresche lucidate a mano.",
+    ingredients: ["Pasta frolla", "Burro", "Uova", "Crema pasticcera", "Fragole fresche", "Gelatina", "Zucchero a velo"] },
+  "torta-compleanno": { kicker: "Torte & Cerimonie", title: "Torte personalizzate", img: "img/torta-compleanno.jpg",
+    desc: "Pan di Spagna, creme e decorazioni su misura per compleanni, battesimi e cerimonie.",
+    ingredients: ["Pan di Spagna", "Panna", "Crema pasticcera", "Frutta fresca", "Pasta di zucchero", "Uova", "Zucchero"] },
+  panettone: { kicker: "I Grandi Lievitati", title: "Panettone artigianale", img: "img/panettone.jpg",
+    desc: "Lievito madre e lunga lievitazione, anche nella versione con gocce di cioccolato fondente.",
+    ingredients: ["Farina", "Burro", "Uova", "Zucchero", "Lievito madre", "Gocce di cioccolato", "Vaniglia"] },
+  chiacchiere: { kicker: "I Grandi Lievitati", title: "Chiacchiere", img: "img/chiacchiere.jpg",
+    desc: "Sfoglie sottili e croccanti di Carnevale, con tanto zucchero a velo.",
+    ingredients: ["Farina", "Uova", "Zucchero", "Burro", "Vino bianco", "Olio per frittura", "Zucchero a velo"] },
+  colomba: { kicker: "I Grandi Lievitati", title: "Colomba artigianale", img: "img/colomba.jpg",
+    desc: "Soffice impasto a lievito madre con canditi d'arancia e glassa alle mandorle.",
+    ingredients: ["Farina", "Burro", "Uova", "Zucchero", "Lievito madre", "Canditi d'arancia", "Glassa alle mandorle", "Mandorle"] },
+  "creazione-numero": { kicker: "Le nostre creazioni", title: "Torte a numero", img: "img/creazione-numero.jpg",
+    desc: "Il numero della festa in frolla, crema e frutta fresca: si ordina su richiesta.",
+    ingredients: ["Pasta frolla", "Crema pasticcera", "Fragole", "Kiwi", "Mango", "Frutti di bosco", "Zucchero a velo"] },
+  "creazione-cornetti": { kicker: "Le nostre creazioni", title: "Cornetti bicolore", img: "img/creazione-cornetti.jpg",
+    desc: "La nostra sfoglia a strisce: verde al pistacchio e rosa al lampone.",
+    ingredients: ["Farina", "Burro", "Latte", "Zucchero", "Pistacchio", "Lampone", "Lievito"] },
+  "creazione-cioccolato": { kicker: "Le nostre creazioni", title: "Cupole al cioccolato", img: "img/creazione-cioccolato.jpg",
+    desc: "Mousse al cioccolato al latte, glassa fondente e nocciole caramellate.",
+    ingredients: ["Cioccolato al latte", "Cioccolato fondente", "Panna", "Nocciole", "Zucchero", "Base di biscotto"] },
+  "creazione-frutta": { kicker: "Le nostre creazioni", title: "Scrigno di frutta", img: "img/creazione-frutta.jpg",
+    desc: "Pareti di cioccolato decorato a venature di legno, piene di frutta fresca.",
+    ingredients: ["Cioccolato fondente", "Pan di Spagna", "Crema", "Fragole", "Frutti di bosco", "Kiwi"] },
+};
+
+/* ---------- Scheda prodotto: si apre in 3D partendo dal dolce toccato ---------- */
+const productDialog = document.getElementById("product-dialog");
+const pdCard = productDialog.querySelector(".pd-card");
+const pdImg = productDialog.querySelector("[data-pd-img]");
+let openedFrom = null;
+
+function fillProduct(key) {
+  const p = PRODUCTS[key];
+  if (!p) return false;
+  pdImg.src = p.img;
+  pdImg.alt = p.title;
+  productDialog.querySelector("[data-pd-kicker]").textContent = p.kicker;
+  productDialog.querySelector("[data-pd-title]").textContent = p.title;
+  productDialog.querySelector("[data-pd-desc]").textContent = p.desc;
+  const list = productDialog.querySelector("[data-pd-ingredients]");
+  list.replaceChildren(...p.ingredients.map((name, i) => {
+    const li = document.createElement("li");
+    li.textContent = name;
+    li.style.setProperty("--i", i);
+    return li;
+  }));
+  return true;
+}
+
+// Trasformazione che porta la scheda aperta sopra al dolce di partenza.
+function fromCardTransform(cardEl) {
+  const from = cardEl.getBoundingClientRect();
+  const to = pdCard.getBoundingClientRect();
+  const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+  const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+  const s = Math.max(.2, Math.min(from.width / to.width, 1));
+  return `perspective(1400px) translate(${dx}px, ${dy}px) scale(${s}) rotateY(-28deg) rotateX(12deg)`;
+}
+
+function openProduct(key, cardEl) {
+  if (!fillProduct(key)) return;
+  openedFrom = cardEl;
+  productDialog.showModal();
+  productDialog.classList.add("is-open");
+  if (reduceMotion || !pdCard.animate) return;
+  pdCard.animate([
+    { transform: fromCardTransform(cardEl), opacity: .4, borderRadius: "14px" },
+    { transform: "perspective(1400px) translate(0, 0) scale(1) rotateY(0) rotateX(0)", opacity: 1 },
+  ], { duration: 620, easing: "cubic-bezier(.2,.9,.25,1.05)" });
+}
+
+function closeProduct() {
+  if (!productDialog.open) return;
+  productDialog.classList.remove("is-open");
+  if (reduceMotion || !openedFrom || !pdCard.animate) { productDialog.close(); return; }
+  const anim = pdCard.animate([
+    { transform: "perspective(1400px) translate(0, 0) scale(1)", opacity: 1 },
+    { transform: fromCardTransform(openedFrom), opacity: 0 },
+  ], { duration: 380, easing: "cubic-bezier(.5,0,.75,0)" });
+  anim.onfinish = () => productDialog.close();
+}
+
+document.querySelectorAll("[data-open-product]").forEach((btn) => {
+  btn.addEventListener("click", () => openProduct(btn.dataset.openProduct, btn.closest("[data-product]")));
+});
+// Chiusura animata: pulsante ×, tasto Esc, clic fuori dalla scheda.
+productDialog.querySelector(".pd-close").addEventListener("click", (e) => { e.preventDefault(); closeProduct(); });
+productDialog.addEventListener("cancel", (e) => { e.preventDefault(); closeProduct(); });
+productDialog.addEventListener("keydown", (e) => { if (e.key === "Escape") { e.preventDefault(); closeProduct(); } });
+productDialog.addEventListener("click", (e) => { if (e.target === productDialog) closeProduct(); });
+productDialog.addEventListener("close", () => { openedFrom?.querySelector("[data-open-product]")?.focus({ preventScroll: true }); });
+
+/* ---------- Inclinazione 3D seguendo il puntatore ---------- */
+function addTilt(el, max = 10) {
+  let frame = 0;
+  el.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      el.style.setProperty("--rx", `${(0.5 - y) * max}deg`);
+      el.style.setProperty("--ry", `${(x - 0.5) * max}deg`);
+      el.style.setProperty("--gx", `${x * 100}%`);
+      el.style.setProperty("--gy", `${y * 100}%`);
+      el.classList.add("is-tilting");
+    });
+  });
+  el.addEventListener("pointerleave", () => {
+    cancelAnimationFrame(frame);
+    el.classList.remove("is-tilting");
+    el.style.setProperty("--rx", "0deg");
+    el.style.setProperty("--ry", "0deg");
+  });
+}
+
+if (!reduceMotion && finePointer) {
+  document.querySelectorAll(".card, .gallery-item").forEach((el) => addTilt(el, 12));
+  addTilt(pdCard.querySelector(".pd-media"), 8);
+
+  // Copertina: la foto si sposta in profondità seguendo il mouse.
+  const hero = document.querySelector(".hero");
+  hero.addEventListener("pointermove", (e) => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+    hero.style.setProperty("--py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+  });
+  hero.addEventListener("pointerleave", () => { hero.style.setProperty("--px", 0); hero.style.setProperty("--py", 0); });
+}
+
+/* ---------- Copertina: profondità durante lo scroll ---------- */
+if (!reduceMotion) {
+  const heroEl = document.querySelector(".hero");
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const p = Math.min(window.scrollY / heroEl.offsetHeight, 1);
+      heroEl.style.setProperty("--scroll", p.toFixed(3));
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
 /* ---------- Anno nel footer ---------- */
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

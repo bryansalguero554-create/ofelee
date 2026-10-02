@@ -325,8 +325,15 @@ img.img-missing { visibility: hidden; }
 .tabs button:hover { border-color: var(--accent); }
 .tabs button[aria-selected="true"] { background: var(--olive); border-color: var(--olive); color: #fff; }
 
-.tab-panel { animation: fade .4s ease; }
-@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+/* cambio scheda: il pannello ruota in 3D e le card entrano a cascata */
+.tab-panel { perspective: 1400px; }
+.tab-panel:not([hidden]) .cards { animation: panel-in .7s cubic-bezier(.2,.8,.2,1) both; transform-origin: 50% 0; }
+.tab-panel:not([hidden]) .card { animation: card-in .75s cubic-bezier(.2,.8,.2,1) both; }
+.tab-panel:not([hidden]) .card:nth-child(2) { animation-delay: .08s; }
+.tab-panel:not([hidden]) .card:nth-child(3) { animation-delay: .16s; }
+.tab-panel:not([hidden]) .card:nth-child(4) { animation-delay: .24s; }
+@keyframes panel-in { from { rotate: x 14deg; translate: 0 30px; } to { rotate: none; translate: none; } }
+@keyframes card-in { from { opacity: 0; rotate: y -35deg; translate: 0 40px; } to { opacity: 1; rotate: none; translate: none; } }
 
 .panel-intro { text-align: center; max-width: 680px; margin: 0 auto 32px; color: var(--muted); }
 
@@ -340,9 +347,14 @@ img.img-missing { visibility: hidden; }
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform .3s;
+  position: relative;
+  /* inclinazione 3D guidata dal puntatore (js: --rx / --ry) */
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  will-change: transform;
 }
-.card:hover { transform: translateY(-4px); }
+.card:hover { box-shadow: 0 30px 50px -22px rgba(38, 44, 27, .45); }
+.card.is-tilting { transition: transform .08s linear, box-shadow .4s; }
 .card-img { aspect-ratio: 4 / 3; }
 .card-img img { transition: transform .6s; }
 .card:hover .card-img img { transform: scale(1.05); }
@@ -546,8 +558,10 @@ img.img-missing { visibility: hidden; }
 .mobile-bar { display: none; }
 
 /* ---------- Animazioni on-scroll ---------- */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.is-visible { opacity: 1; transform: none; }
+/* ingresso in prospettiva: usa translate/rotate separati per non
+   interferire con l'inclinazione 3D delle card */
+.reveal { opacity: 0; translate: 0 50px; rotate: x 22deg; transform-origin: 50% 100%; transition: opacity .8s ease, translate .9s cubic-bezier(.2,.8,.2,1), rotate .9s cubic-bezier(.2,.8,.2,1); }
+.reveal.is-visible { opacity: 1; translate: none; rotate: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -955,4 +969,196 @@ img.img-missing { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .loader { display: none; }
+}
+
+
+/* =========================================================
+   Effetti 3D
+   ========================================================= */
+.cards, .gallery-grid { perspective: 1200px; }
+
+/* riflesso di luce che segue il puntatore */
+.card::after,
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255,255,255,.38), transparent 55%);
+  opacity: 0;
+  transition: opacity .4s;
+  z-index: 3;
+}
+.card.is-tilting::after,
+.gallery-item.is-tilting::after { opacity: 1; }
+
+.gallery-item {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+}
+.gallery-item.is-tilting { transition: transform .08s linear; }
+.gallery-item:hover { box-shadow: 0 30px 50px -22px rgba(38, 44, 27, .5); }
+
+/* tutta la card è toccabile */
+.card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: inherit;
+}
+.card-hit:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.card-more {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 1;
+  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  box-shadow: 0 6px 16px -6px rgba(0,0,0,.35);
+  transition: transform .45s cubic-bezier(.3,1.6,.5,1), background .3s, color .3s;
+}
+.card:hover .card-more { transform: rotate(90deg) scale(1.1); background: var(--accent); color: #fff; }
+
+.tap-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: .45em 1em;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-size: .85rem;
+  color: var(--olive) !important;
+}
+.tap-hint span { color: var(--accent); animation: hint-spin 3s linear infinite; display: inline-block; }
+@keyframes hint-spin { to { transform: rotate(360deg); } }
+
+/* copertina: profondità con mouse e scroll */
+.hero { perspective: 1200px; overflow: hidden; }
+.hero-media img {
+  transform: scale(1.12) translate3d(calc(var(--px, 0) * -26px), calc(var(--py, 0) * -18px + var(--scroll, 0) * 90px), 0);
+  transition: transform .25s ease-out;
+}
+.hero-content {
+  transform: translate3d(calc(var(--px, 0) * 14px), calc(var(--py, 0) * 10px), 0) rotateX(calc(var(--scroll, 0) * 18deg));
+  transform-origin: 50% 100%;
+  opacity: calc(1 - var(--scroll, 0) * 1.1);
+  transition: transform .25s ease-out;
+}
+.hero h1 { animation: hero-title 1.1s cubic-bezier(.2,.8,.2,1) both .2s; transform-origin: 0 100%; }
+.hero-lead, .hero-actions, .hero-meta { animation: hero-up .9s cubic-bezier(.2,.8,.2,1) both; }
+.hero-lead { animation-delay: .4s; }
+.hero-actions { animation-delay: .55s; }
+.hero-meta { animation-delay: .7s; }
+@keyframes hero-title { from { opacity: 0; rotate: x 70deg; translate: 0 30px; } to { opacity: 1; rotate: none; translate: none; } }
+@keyframes hero-up { from { opacity: 0; translate: 0 26px; } to { opacity: 1; translate: none; } }
+
+/* =========================================================
+   Scheda prodotto (foto + descrizione + ingredienti)
+   ========================================================= */
+.product-dialog {
+  width: min(920px, 100% - 32px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.product-dialog::backdrop {
+  background: rgba(20, 24, 14, .55);
+  backdrop-filter: blur(8px);
+  animation: backdrop-in .4s ease both;
+}
+@keyframes backdrop-in { from { opacity: 0; } }
+
+.pd-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--cream);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.6);
+  max-height: calc(100dvh - 32px);
+  transform-origin: 50% 50%;
+}
+.pd-close-form { position: absolute; top: 10px; right: 10px; z-index: 5; margin: 0; }
+.pd-close { position: static; background: rgba(255,255,255,.9); box-shadow: 0 4px 14px -4px rgba(0,0,0,.3); }
+
+.pd-media {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  perspective: 900px;
+  background: var(--cream-2);
+}
+.pd-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.pd-media.is-tilting img { transition: transform .08s linear; }
+.pd-glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--gx, 30%) var(--gy, 20%), rgba(255,255,255,.35), transparent 50%);
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+.pd-media.is-tilting .pd-glare { opacity: 1; }
+
+.pd-body { padding: clamp(24px, 4vw, 40px); overflow-y: auto; }
+.pd-kicker { font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+.pd-title { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 10px; }
+.pd-desc { color: var(--muted); margin-bottom: 22px; }
+.pd-subtitle { font-family: var(--font-sans); font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); margin: 0 0 10px; }
+.pd-ingredients { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; perspective: 600px; }
+.pd-ingredients li {
+  padding: .45em .95em;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-size: .88rem;
+  color: var(--text);
+}
+.product-dialog.is-open .pd-ingredients li { animation: chip-in .55s cubic-bezier(.3,1.4,.5,1) both; animation-delay: calc(.25s + var(--i, 0) * .05s); }
+@keyframes chip-in { from { opacity: 0; rotate: x -90deg; translate: 0 12px; } to { opacity: 1; rotate: none; translate: none; } }
+.pd-note { font-size: .8rem; color: var(--muted); margin-bottom: 20px; }
+.pd-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 720px) {
+  .product-dialog { width: 100%; margin: auto 0 0; max-height: 92dvh; }
+  .pd-card { grid-template-columns: 1fr; border-radius: 24px 24px 0 0; max-height: 92dvh; overflow-y: auto; }
+  .pd-media { min-height: 0; aspect-ratio: 4 / 3; }
+  .pd-body { overflow: visible; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .gallery-item { transform: none !important; }
+  .hero-media img, .hero-content { transform: none !important; opacity: 1 !important; }
+  .reveal { translate: none; rotate: none; }
+}
+
+/* sul telefono (niente mouse): la card si "schiaccia" in 3D al tocco */
+@media (hover: none) {
+  .card:active, .gallery-item:active { transform: perspective(900px) rotateX(8deg) scale(.96); transition-duration: .15s; }
 }

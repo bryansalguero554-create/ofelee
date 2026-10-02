@@ -178,6 +178,7 @@
           <p class="eyebrow">Il nostro banco</p>
           <h2 id="spec-title">Le nostre specialità</h2>
           <p>Dalla prima colazione al vassoio della domenica: tutto nasce ogni giorno nel nostro laboratorio.</p>
+          <p class="tap-hint"><span aria-hidden="true">✦</span> Tocca un dolce per vedere la foto e gli ingredienti</p>
         </header>
 
         <div class="tabs" role="tablist" aria-label="Categorie di prodotti">
@@ -193,26 +194,32 @@
             <p>Brioche e croissant lievitati con cura e sfornati ogni mattina, accompagnati da un caffè di qualità. Da gustare ai nostri tavolini o da portare via.</p>
           </div>
           <div class="cards">
-            <article class="card">
+            <article class="card" data-product="croissant">
               <div class="card-img"><img class="crop-croissant" src="img/croissant.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Croissant farciti</h3>
-                <p>Pistacchio, crema, cioccolato o marmellata: farciture generose, sfoglia fragrante.</p>
+                <p>Sfoglia bicolore, farcita al momento.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="croissant" aria-haspopup="dialog" aria-label="Apri Croissant farciti: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="brioche">
               <div class="card-img"><img class="crop-brioche" src="img/brioche.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Brioche artigianali</h3>
-                <p>Lunga lievitazione e burro di qualità per un impasto soffice e profumato.</p>
+                <p>Lunga lievitazione, burro e profumo di forno.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="brioche" aria-haspopup="dialog" aria-label="Apri Brioche artigianali: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="caffe">
               <div class="card-img"><img class="crop-caffe" src="img/caffe.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Caffetteria</h3>
-                <p>Espresso, cappuccino e tutte le specialità del bar, preparati con cura.</p>
+                <p>Espresso, cappuccino e cioccolata calda.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="caffe" aria-haspopup="dialog" aria-label="Apri Caffetteria: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
           </div>
         </div>
@@ -223,26 +230,32 @@
             <p>La nostra pasticceria fresca, tra le più apprezzate della zona. Perfetta per il vassoio della domenica, per un pranzo in famiglia o per un regalo.</p>
           </div>
           <div class="cards">
-            <article class="card">
+            <article class="card" data-product="cannoncini">
               <div class="card-img"><img class="crop-cannoncini" src="img/cannoncini.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Cannoncini</h3>
-                <p>Sfoglia croccante riempita al momento con la nostra crema pasticcera.</p>
+                <p>Sfoglia croccante e crema appena fatta.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="cannoncini" aria-haspopup="dialog" aria-label="Apri Cannoncini: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="bigne">
               <div class="card-img"><img class="crop-bigne" src="img/bigne.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Bignè</h3>
-                <p>Pasta choux leggera con crema, chantilly o cioccolato.</p>
+                <p>Pasta choux, chantilly e cioccolato.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="bigne" aria-haspopup="dialog" aria-label="Apri Bignè: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="tartellette">
               <div class="card-img"><img class="crop-tartellette" src="img/tartellette.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Tartellette alla frutta</h3>
-                <p>Frolla friabile, crema e frutta fresca di stagione.</p>
+                <p>Frolla friabile e frutti di bosco.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="tartellette" aria-haspopup="dialog" aria-label="Apri Tartellette alla frutta: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
           </div>
           <p class="panel-cta">Vassoio per un'occasione? <a href="#torte">Prenotalo qui</a> e lo trovi pronto al ritiro.</p>
@@ -254,33 +267,41 @@
             <p>Le creazioni più richieste per compleanni, battesimi, comunioni, lauree e anniversari. Ogni torta è preparata su ordinazione.</p>
           </div>
           <div class="cards">
-            <article class="card">
+            <article class="card" data-product="millefoglie">
               <div class="card-img"><img class="crop-millefoglie" src="img/millefoglie.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Millefoglie</h3>
-                <p>Strati di sfoglia croccante e crema chantilly: un grande classico.</p>
+                <p>Sfoglia, chantilly, fragole e caramello.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="millefoglie" aria-haspopup="dialog" aria-label="Apri Millefoglie: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="saint-honore">
               <div class="card-img"><img class="crop-saint-honore" src="img/saint-honore.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Saint Honoré</h3>
-                <p>Bignè caramellati, crema e panna su base di sfoglia.</p>
+                <p>Bignè caramellati su base di sfoglia.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="saint-honore" aria-haspopup="dialog" aria-label="Apri Saint Honoré: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="crostata">
               <div class="card-img"><img class="crop-crostata" src="img/crostata.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Crostate di frutta fresca</h3>
-                <p>Frolla artigianale, crema pasticcera e la frutta migliore di stagione.</p>
+                <p>Frolla, crema e fragole di stagione.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="crostata" aria-haspopup="dialog" aria-label="Apri Crostate di frutta fresca: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card">
+            <article class="card" data-product="torta-compleanno">
               <div class="card-img"><img class="crop-torta-compleanno" src="img/torta-compleanno.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Torte personalizzate</h3>
-                <p>Gusti, decorazioni e scritte su misura per compleanni e cerimonie.</p>
+                <p>Gusti e decorazioni su misura.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="torta-compleanno" aria-haspopup="dialog" aria-label="Apri Torte personalizzate: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
           </div>
           <p class="panel-cta"><a href="#torte" class="btn btn-accent btn-small">Richiedi la tua torta</a></p>
@@ -293,29 +314,35 @@
             <p class="season-banner" data-season-banner hidden></p>
           </div>
           <div class="cards">
-            <article class="card" data-season="natale">
+            <article class="card" data-product="panettone" data-season="natale">
               <div class="card-img"><img class="crop-panettone" src="img/panettone.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Novembre – Gennaio</span>
                 <h3>Panettone artigianale</h3>
-                <p>Lievito madre, lunga lievitazione e canditi selezionati.</p>
+                <p>Lievito madre e gocce di cioccolato.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="panettone" aria-haspopup="dialog" aria-label="Apri Panettone artigianale: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card" data-season="carnevale">
+            <article class="card" data-product="chiacchiere" data-season="carnevale">
               <div class="card-img"><img class="crop-chiacchiere" src="img/chiacchiere.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Carnevale</span>
                 <h3>Chiacchiere</h3>
-                <p>Sottili, croccanti e spolverate di zucchero a velo.</p>
+                <p>Sottili, croccanti, zucchero a velo.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="chiacchiere" aria-haspopup="dialog" aria-label="Apri Chiacchiere: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
-            <article class="card" data-season="pasqua">
+            <article class="card" data-product="colomba" data-season="pasqua">
               <div class="card-img"><img class="crop-colomba" src="img/colomba.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Pasqua</span>
                 <h3>Colomba artigianale</h3>
-                <p>Soffice, profumata, con glassa alle mandorle.</p>
+                <p>Glassa alle mandorle e canditi.</p>
               </div>
+              <button type="button" class="card-hit" data-open-product="colomba" aria-haspopup="dialog" aria-label="Apri Colomba artigianale: foto e ingredienti"></button>
+              <span class="card-more" aria-hidden="true">+</span>
             </article>
           </div>
           <p class="panel-cta">Vuoi riservare il tuo? <a href="#torte">Prenota ora</a>.</p>
@@ -332,21 +359,25 @@
           <p>Momenti dolci realizzati artigianalmente nel nostro laboratorio.</p>
         </header>
         <div class="gallery-grid">
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-product="creazione-numero">
             <img src="img/creazione-numero.jpg" alt="Torta a forma di numero con frutta fresca" loading="lazy">
             <figcaption class="gallery-caption">Torte a numero</figcaption>
+            <button type="button" class="card-hit" data-open-product="creazione-numero" aria-haspopup="dialog" aria-label="Apri Torte a numero: foto e ingredienti"></button>
           </figure>
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-product="creazione-cornetti">
             <img src="img/creazione-cornetti.jpg" alt="Cornetti bicolore al pistacchio e al lampone" loading="lazy">
             <figcaption class="gallery-caption">Cornetti bicolore</figcaption>
+            <button type="button" class="card-hit" data-open-product="creazione-cornetti" aria-haspopup="dialog" aria-label="Apri Cornetti bicolore: foto e ingredienti"></button>
           </figure>
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-product="creazione-cioccolato">
             <img src="img/creazione-cioccolato.jpg" alt="Cupole al cioccolato con nocciole caramellate" loading="lazy">
             <figcaption class="gallery-caption">Cupole al cioccolato</figcaption>
+            <button type="button" class="card-hit" data-open-product="creazione-cioccolato" aria-haspopup="dialog" aria-label="Apri Cupole al cioccolato: foto e ingredienti"></button>
           </figure>
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-product="creazione-frutta">
             <img src="img/creazione-frutta.jpg" alt="Torta di frutta fresca in scrigno di cioccolato" loading="lazy">
             <figcaption class="gallery-caption">Scrigno di frutta</figcaption>
+            <button type="button" class="card-hit" data-open-product="creazione-frutta" aria-haspopup="dialog" aria-label="Apri Scrigno di frutta: foto e ingredienti"></button>
           </figure>
         </div>
       </div>
@@ -522,6 +553,30 @@
   </footer>
 
   <!-- ============ INFORMATIVE ============ -->
+  <!-- ============ SCHEDA PRODOTTO ============ -->
+  <dialog class="product-dialog" id="product-dialog" aria-labelledby="pd-title">
+    <div class="pd-card">
+      <form method="dialog" class="pd-close-form">
+        <button class="dialog-close pd-close" aria-label="Chiudi">×</button>
+      </form>
+      <div class="pd-media">
+        <img src="" alt="" data-pd-img>
+        <span class="pd-glare" aria-hidden="true"></span>
+      </div>
+      <div class="pd-body">
+        <p class="pd-kicker" data-pd-kicker></p>
+        <h2 id="pd-title" class="pd-title" data-pd-title></h2>
+        <p class="pd-desc" data-pd-desc></p>
+        <h3 class="pd-subtitle">Ingredienti</h3>
+        <ul class="pd-ingredients" data-pd-ingredients></ul>
+        <p class="pd-note">Ingredienti indicativi. Per allergie e intolleranze chiedi sempre conferma in negozio.</p>
+        <div class="pd-actions">
+          <a class="btn btn-accent" href="tel:+390399900514">Prenota per telefono</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <dialog class="directions-dialog" id="directions-dialog" aria-labelledby="directions-title">
     <form method="dialog">
       <button class="dialog-close" aria-label="Chiudi">×</button>
