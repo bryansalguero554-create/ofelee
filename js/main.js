@@ -319,7 +319,7 @@ setInterval(updateOpenStatus, 60 * 1000);
 
 /* ---------- Animazioni all'ingresso delle sezioni ---------- */
 if ("IntersectionObserver" in window) {
-  const targets = document.querySelectorAll(".strength, .section-head, .card, .order-text, .order-call, .about-media, .about-text, .hours-box, .where-box");
+  const targets = document.querySelectorAll(".strength, .section-head, .card, .order-text, .order-call, .about-media, .about-text, .hours-box, .where-box, .faq-item");
   targets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

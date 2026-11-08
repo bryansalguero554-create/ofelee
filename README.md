@@ -12,7 +12,16 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 - **Chi siamo**, servizi, **orari** con il giorno corrente evidenziato, **mappa** e indicazioni.
 - **Animazione di caricamento**: un cupcake si riempie di panna, arriva la ciliegina e il sito si apre (più breve dalla seconda pagina; disattivata con "riduci movimento").
 - **Pagina 404** (`404.html`) con il cupcake morsicato, autonoma e funzionante a qualsiasi percorso.
-- Barra azioni rapide su smartphone (Chiama · Ordina · Mappa) e dati strutturati Schema.org per Google.
+- **Domande frequenti** (ordini, anticipo, stagionalità, orari, allergie, parcheggio, pagamenti), anche come dati strutturati `FAQPage`.
+- Barra azioni rapide su smartphone (Chiama · Ordina · Mappa) e dati strutturati Schema.org per Google (`Bakery` con catalogo prodotti e `FAQPage`).
+
+## SEO e condivisione
+- **Indirizzo del sito**: `https://bryansalguero554-create.github.io/ofelee/` (GitHub Pages). Se si passa a un dominio proprio,
+  sostituirlo in `index.html` (canonical, `og:url`, `og:image`, JSON-LD), `sitemap.xml` e `robots.txt`.
+- **Anteprima social** `img/og-image.jpg` (1200×630): quella che compare quando il link viene condiviso su WhatsApp, Facebook, ecc.
+- `sitemap.xml` e `robots.txt` pronti da inviare a Google Search Console.
+- Icone del marchio (`favicon.svg`, `icon-192/512.png`, `apple-touch-icon.png`) e `site.webmanifest`.
+- Attivare il **Profilo dell'attività su Google** e collegare il sito: per la ricerca locale conta più del sito stesso.
 
 ## Da completare prima della pubblicazione
 1. **Foto**: inserire le immagini in `img/` (vedi sotto). Finché mancano si vede un segnaposto color caramello.
@@ -31,7 +40,8 @@ Bastano **5 foto** per avere il sito completo:
 | `torte.jpg` | Millefoglie o crostata di frutta | Card Torte e galleria |
 | `lievitati.jpg` | Panettone o colomba a fette | Card Lievitati e galleria |
 
-Quando arrivano le foto reali si può dare a ogni prodotto la sua immagine, che ha la precedenza su quella di categoria:
+Quando arrivano le foto reali si può dare a ogni prodotto la sua immagine, che ha la precedenza su quella di categoria
+(per croissant e millefoglie, che oggi usano la foto di categoria, va anche aggiornato lo `src` in `index.html`):
 `laboratorio.jpg`, `croissant.jpg`, `brioche.jpg`, `caffe.jpg`, `cannoncini.jpg`, `bigne.jpg`, `tartellette.jpg`,
 `millefoglie.jpg`, `saint-honore.jpg`, `crostata.jpg`, `torta-compleanno.jpg`, `panettone.jpg`, `chiacchiere.jpg`, `colomba.jpg`.
 
