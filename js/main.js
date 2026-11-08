@@ -317,20 +317,18 @@ function updateOpenStatus() {
 updateOpenStatus();
 setInterval(updateOpenStatus, 60 * 1000);
 
-/* ---------- Animazioni all'ingresso delle sezioni ---------- */
-if ("IntersectionObserver" in window) {
-  const targets = document.querySelectorAll(".strength, .section-head, .card, .order-text, .order-call, .about-media, .about-text, .hours-box, .where-box, .faq-item");
-  targets.forEach((el) => el.classList.add("reveal"));
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  targets.forEach((el) => io.observe(el));
-}
+/* ---------- Ingresso della copertina ----------
+   Un solo momento animato: parte quando il velo di caricamento si alza. */
+document.documentElement.classList.add("js");
+(function heroIntro() {
+  const start = () => document.body.classList.add("is-ready");
+  const loader = document.getElementById("loader");
+  if (!loader) { start(); return; }
+  new MutationObserver((_, obs) => {
+    if (loader.classList.contains("is-hidden") || !loader.isConnected) { obs.disconnect(); start(); }
+  }).observe(loader, { attributes: true });
+  setTimeout(start, 6200); // stessa rete di sicurezza del velo
+})();
 
 /* =========================================================
    Effetti 3D e schede prodotto
@@ -487,7 +485,7 @@ function addTilt(el, max = 10) {
 }
 
 if (!reduceMotion && finePointer) {
-  document.querySelectorAll(".card, .gallery-item").forEach((el) => addTilt(el, 12));
+  document.querySelectorAll(".card, .gallery-item").forEach((el) => addTilt(el, 8));
   addTilt(pdCard.querySelector(".pd-media"), 8);
 
   // Copertina: la foto si sposta in profondità seguendo il mouse.
