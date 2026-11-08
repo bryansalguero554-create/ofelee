@@ -34,8 +34,8 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-bg-sm.webp 800w, img/hero-bg.webp 1376w" imagesizes="(max-width: 900px) 100vw, 52vw" fetchpriority="high">
   <link rel="preload" href="fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=202611082046">
-  <link rel="stylesheet" href="css/style.css?v=202611082046">
+  <link rel="stylesheet" href="css/fonts.css?v=202611082057">
+  <link rel="stylesheet" href="css/style.css?v=202611082057">
 
   <script type="application/ld+json">
   {
@@ -226,7 +226,7 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Navigazione principale">
         <ul>
-          <li><a href="#specialita">La vetrina</a></li>
+          <li><a href="#specialita">Specialità</a></li>
           <li><a href="#torte">Torte su ordinazione</a></li>
           <li><a href="#chi-siamo">Chi siamo</a></li>
           <li><a href="#orari">Orari e indirizzo</a></li>
@@ -238,24 +238,42 @@
 
   <main id="main">
 
-    <!-- ============ COPERTINA: il nome come voce di dizionario ============ -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-text">
-        <p class="hero-place">Pasticceria e caffetteria a Merate</p>
-        <h1 id="hero-title"><span class="hero-word">ôfelee</span><span class="visually-hidden">: pasticceria e caffetteria artigianale a Merate</span></h1>
-        <p class="hero-phon"><span lang="lmo">/u.ˈfeː.le/</span> <em>sostantivo maschile, dialetto milanese</em></p>
-        <ol class="hero-defs">
-          <li>Il pasticcere: l'artigiano che ogni mattina impasta, inforna e farcisce i dolci del paese.</li>
-          <li>Il nostro laboratorio e caffetteria in via Padre Paolo Arlati 2: colazioni, mignon riempite al momento, torte su misura.</li>
-        </ol>
-        <div class="hero-actions">
-          <a href="#torte" class="btn btn-accent">Prenota una torta</a>
-          <a href="#specialita" class="btn btn-line">Guarda la vetrina</a>
+    <!-- ============ COPERTINA ============
+         La parola è scavata nel laccato oliva: attraverso le lettere si vede
+         il negozio. Scorrendo si entra nella parola e il bancone riempie lo schermo. -->
+    <section class="intro" aria-labelledby="hero-title" data-intro>
+      <div class="intro-sticky">
+        <div class="intro-photo"><picture><source type="image/webp" srcset="img/hero-bg-sm.webp 800w, img/hero-bg.webp 1376w" sizes="(max-width: 900px) 100vw, 52vw"><img src="img/hero-bg.jpg" width="1376" height="768" fetchpriority="high" alt="Il bancone in marmo con le paste in vetrina e la scritta Dolci sulla parete verde"></picture></div>
+        <div class="intro-shade" aria-hidden="true"></div>
+        <svg class="intro-mask" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+          <defs>
+            <mask id="word-mask" maskUnits="userSpaceOnUse" x="-20000" y="-20000" width="40000" height="40000">
+              <rect x="-20000" y="-20000" width="40000" height="40000" fill="#fff"/>
+              <text x="500" y="340" text-anchor="middle" class="intro-word" data-intro-word>ôfelee</text>
+            </mask>
+          </defs>
+          <rect x="-20000" y="-20000" width="40000" height="40000" fill="#3d4721" mask="url(#word-mask)"/>
+        </svg>
+
+        <div class="intro-labels" aria-hidden="true">
+          <p class="intro-place">Pasticceria e caffetteria a Merate</p>
+          <p class="intro-phon"><span>/u.ˈfeː.le/</span> sostantivo maschile, dialetto milanese</p>
+          <p class="intro-cue">Scorri ed entra</p>
         </div>
-        <p class="open-status" data-open-status>&nbsp;</p>
-      </div>
-      <div class="hero-media">
-        <picture><source type="image/webp" srcset="img/hero-bg-sm.webp 800w, img/hero-bg.webp 1376w" sizes="(max-width: 900px) 100vw, 52vw"><img class="crop-hero-bg" src="img/hero-bg.jpg" width="1376" height="768" fetchpriority="high" alt="Il bancone in marmo con le paste in vetrina e la scritta Dolci sulla parete verde"></picture>
+
+        <div class="intro-content">
+          <h1 id="hero-title"><span class="visually-hidden">L'Ôfelee: </span>Il pasticcere di Merate</h1>
+          <ol class="hero-defs">
+            <li>Il pasticcere: l'artigiano che ogni mattina impasta, inforna e farcisce i dolci del paese.</li>
+            <li>Il nostro laboratorio e caffetteria in via Padre Paolo Arlati 2: colazioni, mignon riempite al momento, torte su misura.</li>
+          </ol>
+          <div class="hero-actions">
+            <a href="#torte" class="btn btn-accent">Prenota una torta</a>
+            <a href="#specialita" class="btn btn-line">Una giornata al banco</a>
+          </div>
+          <p class="open-status" data-open-status>&nbsp;</p>
+        </div>
+
         <a class="hero-seal" href="https://www.google.com/maps/search/?api=1&amp;query=Pasticceria+L%27Ofelee+Via+Arlati+2+Merate" target="_blank" rel="noopener noreferrer" aria-label="Valutazione 4,6 su 5 su Google, oltre 200 recensioni. Leggi le recensioni">
           <strong>4,6</strong>
           <span class="stars" aria-hidden="true">★★★★★</span>
@@ -264,24 +282,24 @@
       </div>
     </section>
 
-    <!-- ============ LA VETRINA ============ -->
-    <section class="section vetrina" id="specialita" aria-labelledby="spec-title">
-      <div class="container">
-        <header class="vetrina-head">
-          <h2 id="spec-title">In vetrina</h2>
-          <p>Tutto nasce ogni mattina nel laboratorio dietro al banco: la crema si fa ogni giorno, cannoncini e bignè si riempiono al momento. Tocca un dolce per vedere foto e ingredienti.</p>
+    <!-- ============ UNA GIORNATA AL BANCO ============
+         Su computer lo scorrimento verticale fa avanzare i momenti in orizzontale;
+         su telefono si sfogliano col dito. -->
+    <section class="giornata" id="specialita" aria-labelledby="spec-title" data-hscroll>
+      <div class="giornata-sticky">
+        <header class="giornata-head">
+          <h2 id="spec-title">Una giornata al banco</h2>
+          <p>Tutto nasce nel laboratorio dietro al banco: la crema si fa ogni giorno, cannoncini e bignè si riempiono al momento. Tocca un dolce per foto e ingredienti.</p>
         </header>
-
-        <div class="tabs" role="tablist" aria-label="Categorie di dolci">
-          <button role="tab" aria-selected="true" aria-controls="tab-colazione" id="t-colazione">Colazione</button>
-          <button role="tab" aria-selected="false" aria-controls="tab-mignon" id="t-mignon" tabindex="-1">Mignon</button>
-          <button role="tab" aria-selected="false" aria-controls="tab-torte" id="t-torte" tabindex="-1">Torte</button>
-          <button role="tab" aria-selected="false" aria-controls="tab-lievitati" id="t-lievitati" tabindex="-1">Lievitati delle feste</button>
-        </div>
-
-        <div class="tab-panel" role="tabpanel" id="tab-colazione" aria-labelledby="t-colazione">
-          <p class="panel-intro">Brioche e croissant sfornati ogni mattina, con un caffè fatto bene. Ai tavolini o da portare via.</p>
-          <div class="cards">
+        <div class="giornata-viewport">
+          <div class="giornata-track" data-hscroll-track>
+          <article class="momento" id="tab-colazione" aria-labelledby="m-colazione">
+            <div class="momento-photo"><picture><source type="image/webp" srcset="img/colazione-sm.webp 800w, img/colazione.webp 1200w" sizes="(max-width: 900px) 88vw, 40vw"><img src="img/colazione.jpg" width="1200" height="896" alt="Croissant al pistacchio e cappuccino sul bancone" loading="lazy"></picture></div>
+            <div class="momento-text">
+              <p class="momento-time">Al mattino</p>
+              <h3 id="m-colazione">Colazione</h3>
+              <p class="momento-intro">Brioche e croissant sfornati ogni mattina, con un caffè fatto bene. Ai tavolini o da portare via.</p>
+              <div class="cards">
             <article class="card" data-product="croissant">
               <div class="card-img"><picture><source type="image/webp" srcset="img/colazione-sm.webp 800w, img/colazione.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-croissant" src="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
@@ -306,11 +324,16 @@
               </div>
               <button type="button" class="card-hit" data-open-product="caffe" aria-haspopup="dialog" aria-label="Apri Caffetteria: foto e ingredienti"></button>
             </article>
-          </div>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="tab-mignon" aria-labelledby="t-mignon" hidden>
-          <p class="panel-intro">La pasticceria fresca per cui ci conoscono: per il vassoio della domenica, un pranzo in famiglia o un regalo. <a href="#torte">Prenota il vassoio</a> e lo trovi pronto.</p>
-          <div class="cards">
+              </div>
+            </div>
+          </article>
+          <article class="momento" id="tab-mignon" aria-labelledby="m-mignon">
+            <div class="momento-photo"><picture><source type="image/webp" srcset="img/mignon-sm.webp 800w, img/mignon.webp 1200w" sizes="(max-width: 900px) 88vw, 40vw"><img src="img/mignon.jpg" width="1200" height="896" alt="Vassoi di pasticceria mignon in vetrina" loading="lazy"></picture></div>
+            <div class="momento-text">
+              <p class="momento-time">Tutto il giorno</p>
+              <h3 id="m-mignon">Mignon</h3>
+              <p class="momento-intro">La pasticceria fresca per cui ci conoscono: per il vassoio della domenica, un pranzo in famiglia o un regalo.</p>
+              <div class="cards">
             <article class="card" data-product="cannoncini">
               <div class="card-img"><picture><source type="image/webp" srcset="img/cannoncini-sm.webp 800w, img/cannoncini.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-cannoncini" src="img/cannoncini.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
@@ -335,11 +358,16 @@
               </div>
               <button type="button" class="card-hit" data-open-product="tartellette" aria-haspopup="dialog" aria-label="Apri Tartellette: foto e ingredienti"></button>
             </article>
-          </div>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="tab-torte" aria-labelledby="t-torte" hidden>
-          <p class="panel-intro">Per compleanni, battesimi, comunioni, lauree e anniversari. Ogni torta si prepara su ordinazione: <a href="#torte">ordinala per telefono</a>.</p>
-          <div class="cards">
+              </div>
+            </div>
+          </article>
+          <article class="momento" id="tab-torte" aria-labelledby="m-torte">
+            <div class="momento-photo"><picture><source type="image/webp" srcset="img/torte-sm.webp 800w, img/torte.webp 1200w" sizes="(max-width: 900px) 88vw, 40vw"><img src="img/torte.jpg" width="1200" height="896" alt="Millefoglie con fragole e chantilly" loading="lazy"></picture></div>
+            <div class="momento-text">
+              <p class="momento-time">Su ordinazione</p>
+              <h3 id="m-torte">Torte</h3>
+              <p class="momento-intro">Per compleanni, battesimi, comunioni, lauree e anniversari. Ogni torta si prepara su ordinazione: <a href="#torte">prepara la telefonata</a>.</p>
+              <div class="cards">
             <article class="card" data-product="millefoglie">
               <div class="card-img"><picture><source type="image/webp" srcset="img/torte-sm.webp 800w, img/torte.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-millefoglie" src="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
@@ -372,12 +400,17 @@
               </div>
               <button type="button" class="card-hit" data-open-product="torta-compleanno" aria-haspopup="dialog" aria-label="Apri Torta su misura: foto e ingredienti"></button>
             </article>
-          </div>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="tab-lievitati" aria-labelledby="t-lievitati" hidden>
-          <p class="panel-intro">I grandi dolci della tradizione lombarda, solo nei periodi di festa e in quantità limitate. <a href="#torte">Prenotarli</a> è il modo più sicuro per non restare senza.</p>
-          <p class="season-banner" data-season-banner hidden></p>
-          <div class="cards">
+              </div>
+            </div>
+          </article>
+          <article class="momento" id="tab-lievitati" aria-labelledby="m-lievitati">
+            <div class="momento-photo"><picture><source type="image/webp" srcset="img/panettone-sm.webp 800w, img/panettone.webp 1200w" sizes="(max-width: 900px) 88vw, 40vw"><img src="img/panettone.jpg" width="1200" height="896" alt="Panettone artigianale tagliato" loading="lazy"></picture></div>
+            <div class="momento-text">
+              <p class="momento-time">Nelle feste</p>
+              <h3 id="m-lievitati">Lievitati delle feste</h3>
+              <p class="momento-intro">I grandi dolci della tradizione lombarda, in quantità limitate. <a href="#torte">Prenotarli</a> è il modo più sicuro per non restare senza.</p>
+              <p class="season-banner" data-season-banner hidden></p>
+              <div class="cards">
             <article class="card" data-product="panettone" data-season="natale">
               <div class="card-img"><picture><source type="image/webp" srcset="img/panettone-sm.webp 800w, img/panettone.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-panettone" src="img/panettone.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
@@ -405,8 +438,12 @@
               </div>
               <button type="button" class="card-hit" data-open-product="colomba" aria-haspopup="dialog" aria-label="Apri Colomba: foto e ingredienti"></button>
             </article>
+              </div>
+            </div>
+          </article>
           </div>
         </div>
+        <div class="giornata-progress" aria-hidden="true"><span data-hscroll-bar></span></div>
       </div>
     </section>
 
@@ -748,6 +785,6 @@
     </a>
   </nav>
 
-  <script src="js/main.js?v=202611082046"></script>
+  <script src="js/main.js?v=202611082057"></script>
 </body>
 </html>
