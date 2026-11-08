@@ -5,6 +5,10 @@ Sito statico in HTML, CSS e JavaScript, senza dipendenze né build: basta aprire
 o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting tradizionale).
 
 ## Sezioni
+- **Copertina**: la parola *ôfelee* scavata nel laccato oliva; scorrendo ci si entra e il bancone riempie lo schermo,
+  poi compaiono titolo, definizioni e pulsanti. Con "riduci movimento" si vede subito la versione statica.
+- **Una giornata al banco**: i momenti (colazione, mignon, torte, lievitati) scorrono in orizzontale mentre si scende
+  con la rotella; su smartphone si sfogliano col dito.
 - **Hero** con payoff, pulsanti "Prenota una torta" / "Scopri le specialità", valutazione Google e stato "Aperto ora / Chiuso" in tempo reale (ora di Roma).
 - **La vetrina** (specialità) a schede, con i dolci sotto campane di vetro e cartellini: Colazione, Pasticceria Mignon, Torte & Cerimonie, Grandi Lievitati.
   I lievitati si attivano da soli in base al periodo (Natale, Carnevale ambrosiano, Pasqua).

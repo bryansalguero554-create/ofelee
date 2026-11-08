@@ -591,30 +591,121 @@ if (!reduceMotion && finePointer) {
   document.querySelectorAll(".card, .gallery-item").forEach((el) => addTilt(el, 8));
   addTilt(pdCard.querySelector(".pd-media"), 8);
 
-  // Copertina: la foto si sposta in profondità seguendo il mouse.
-  const hero = document.querySelector(".hero");
-  hero.addEventListener("pointermove", (e) => {
-    const r = hero.getBoundingClientRect();
-    hero.style.setProperty("--px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
-    hero.style.setProperty("--py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
-  });
-  hero.addEventListener("pointerleave", () => { hero.style.setProperty("--px", 0); hero.style.setProperty("--py", 0); });
 }
 
-/* ---------- Copertina: profondità durante lo scroll ---------- */
-if (!reduceMotion) {
-  const heroEl = document.querySelector(".hero");
+/* ---------- Copertina: si entra nella parola ----------
+   Lo scorrimento ingrandisce il laccato oliva attorno all'asta della "l"
+   finché la foto del negozio riempie lo schermo. */
+(function intro() {
+  const sec = document.querySelector("[data-intro]");
+  if (!sec) return;
+  const svg = sec.querySelector(".intro-mask");
+  const word = sec.querySelector("[data-intro-word]");
+  if (reduceMotion) { sec.classList.add("is-static"); return; }
+  sec.classList.add("is-animated");
+
+  function measure() {
+    svg.style.transform = "none";
+    // la parola occupa sempre quasi tutta la larghezza disponibile
+    try {
+      const bb = word.getBBox();
+      const pad = bb.width * 0.05;
+      svg.setAttribute("viewBox", `${(bb.x - pad).toFixed(1)} 0 ${(bb.width + pad * 2).toFixed(1)} 560`);
+    } catch { /* resta il viewBox di partenza */ }
+    try {
+      const box = word.getExtentOfChar(3); // la "l": l'asta più spessa e dritta
+      const pt = svg.createSVGPoint();
+      pt.x = box.x + box.width / 2;
+      pt.y = box.y + box.height * 0.62;
+      const sp = pt.matrixTransform(svg.getScreenCTM());
+      const r = svg.getBoundingClientRect();
+      svg.style.transformOrigin = `${sp.x - r.left}px ${sp.y - r.top}px`;
+    } catch { svg.style.transformOrigin = "50% 55%"; }
+    update();
+  }
+
+  function update() {
+    const total = Math.max(1, sec.offsetHeight - window.innerHeight);
+    const p = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total));
+    const z = Math.min(1, p / 0.62);
+    svg.style.transform = `scale(${1 + Math.pow(z, 2.8) * 120})`;
+    svg.style.opacity = z > 0.9 ? String(Math.max(0, 1 - (z - 0.9) / 0.1)) : "1";
+    sec.style.setProperty("--z", z.toFixed(3));
+    sec.style.setProperty("--p", p.toFixed(3));
+    sec.classList.toggle("is-inside", p > 0.58);
+  }
+
   let ticking = false;
   window.addEventListener("scroll", () => {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(() => {
-      const p = Math.min(window.scrollY / heroEl.offsetHeight, 1);
-      heroEl.style.setProperty("--scroll", p.toFixed(3));
-      ticking = false;
-    });
+    requestAnimationFrame(() => { update(); ticking = false; });
   }, { passive: true });
-}
+  window.addEventListener("resize", measure);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(measure);
+  measure();
+})();
+
+/* ---------- Una giornata al banco: scorrimento orizzontale ---------- */
+(function giornata() {
+  const sec = document.querySelector("[data-hscroll]");
+  if (!sec) return;
+  const track = sec.querySelector("[data-hscroll-track]");
+  const viewport = track.parentElement;
+  const bar = sec.querySelector("[data-hscroll-bar]");
+  const wide = window.matchMedia("(min-width: 901px)");
+  let distance = 0;
+
+  const pinned = () => wide.matches && !reduceMotion;
+
+  function layout() {
+    if (!pinned()) {
+      sec.classList.remove("is-pinned");
+      sec.style.height = "";
+      track.style.transform = "";
+      updateFree();
+      return;
+    }
+    sec.classList.add("is-pinned");
+    distance = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    sec.style.height = `${window.innerHeight + distance}px`;
+    updatePinned();
+  }
+
+  function updatePinned() {
+    const total = Math.max(1, sec.offsetHeight - window.innerHeight);
+    const p = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total));
+    track.style.transform = `translate3d(${(-p * distance).toFixed(1)}px, 0, 0)`;
+    bar.style.transform = `scaleX(${p.toFixed(3)})`;
+  }
+  function updateFree() {
+    const max = viewport.scrollWidth - viewport.clientWidth;
+    bar.style.transform = `scaleX(${max > 0 ? (viewport.scrollLeft / max).toFixed(3) : 0})`;
+  }
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!sec.classList.contains("is-pinned") || ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updatePinned(); ticking = false; });
+  }, { passive: true });
+  viewport.addEventListener("scroll", updateFree, { passive: true });
+  window.addEventListener("resize", layout);
+  wide.addEventListener("change", layout);
+  window.addEventListener("load", layout);
+
+  // Con la tastiera: portare in vista il momento che riceve il focus.
+  track.addEventListener("focusin", (e) => {
+    if (!sec.classList.contains("is-pinned")) return;
+    const art = e.target.closest(".momento");
+    if (!art || !distance) return;
+    const p = Math.min(1, art.offsetLeft / distance);
+    const top = sec.getBoundingClientRect().top + window.scrollY + p * (sec.offsetHeight - window.innerHeight);
+    window.scrollTo({ top, behavior: "auto" });
+  });
+
+  layout();
+})();
 
 /* ---------- Anno nel footer ---------- */
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
