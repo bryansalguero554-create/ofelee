@@ -74,3 +74,7 @@ Per la protezione completa (incluso il clickjacking) si consiglia la pubblicazio
 
 ### Account
 Attivare la verifica in due passaggi (2FA) sull'account GitHub e su quello del dominio: è il punto più a rischio per un sito statico.
+
+## Aggiornamenti e cache
+GitHub Pages fa conservare i file ai browser per 10 minuti. In `index.html` fogli di stile e script hanno un numero
+di versione (`style.css?v=...`): a ogni modifica di CSS o JS aggiornarlo, così i visitatori scaricano subito la versione nuova.
