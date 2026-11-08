@@ -6,7 +6,7 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 
 ## Sezioni
 - **Hero** con payoff, pulsanti "Prenota una torta" / "Scopri le specialità", valutazione Google e stato "Aperto ora / Chiuso" in tempo reale (ora di Roma).
-- **Specialità** a schede: Colazione, Pasticceria Mignon, Torte & Cerimonie, Grandi Lievitati.
+- **La vetrina** (specialità) a schede, con i dolci sotto campane di vetro e cartellini: Colazione, Pasticceria Mignon, Torte & Cerimonie, Grandi Lievitati.
   I lievitati si attivano da soli in base al periodo (Natale, Carnevale ambrosiano, Pasqua).
 - **Ordina la tua torta**: prenotazione telefonica con pulsante "Chiamaci ora" e stato aperto/chiuso in tempo reale.
 - **Chi siamo**, servizi, **orari** con il giorno corrente evidenziato, **mappa** e indicazioni.
@@ -45,7 +45,7 @@ Quando arrivano le foto reali si può dare a ogni prodotto la sua immagine, che 
 `laboratorio.jpg`, `croissant.jpg`, `brioche.jpg`, `caffe.jpg`, `cannoncini.jpg`, `bigne.jpg`, `tartellette.jpg`,
 `millefoglie.jpg`, `saint-honore.jpg`, `crostata.jpg`, `torta-compleanno.jpg`, `panettone.jpg`, `chiacchiere.jpg`, `colomba.jpg`.
 
-Le card ritagliano in 4:3: consigliati 800×600 px, JPG compressi (< 200 KB).
+Le foto dei dolci compaiono dentro cornici ad arco (campane di vetro) inquadrate sul basso: consigliati 800×600 px, JPG compressi (< 200 KB).
 Se si usano foto stock (Unsplash/Pexels) per la demo, vanno sostituite con quelle reali prima della pubblicazione.
 
 ## Privacy e Cookie
