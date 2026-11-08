@@ -8,16 +8,31 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; media-src 'none'; object-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Pasticceria &amp; Caffetteria L'Ôfelee | Merate (LC)</title>
-  <meta name="description" content="Pasticceria artigianale e caffetteria a Merate (LC): colazioni, pasticceria mignon, torte su ordinazione per compleanni e cerimonie, panettoni e colombe artigianali. Via P. Paolo Arlati 2.">
+  <meta name="description" content="Pasticceria artigianale e caffetteria a Merate (LC): colazioni, mignon, torte su ordinazione per compleanni e cerimonie, panettoni e colombe.">
+  <link rel="canonical" href="https://bryansalguero554-create.github.io/ofelee/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#4b5a26">
 
+  <!-- Anteprima quando il link viene condiviso (WhatsApp, Facebook, Instagram…).
+       I social richiedono indirizzi assoluti: se il sito cambia dominio,
+       aggiornare SITE_URL qui, nel canonical, nel JSON-LD e in sitemap.xml. -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="L'Ôfelee – Pasticceria &amp; Caffetteria">
   <meta property="og:title" content="Pasticceria &amp; Caffetteria L'Ôfelee – Merate">
   <meta property="og:description" content="L'arte della pasticceria artigianale nel cuore di Merate. Ordina la tua torta su misura.">
-  <meta property="og:image" content="img/hero-bg.jpg">
+  <meta property="og:url" content="https://bryansalguero554-create.github.io/ofelee/">
+  <meta property="og:image" content="https://bryansalguero554-create.github.io/ofelee/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="L'Ôfelee, pasticceria artigianale a Merate: il banco dei dolci">
   <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="img/hero-bg.jpg" as="image" fetchpriority="high">
   <link rel="preload" href="fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
@@ -25,10 +40,16 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Bakery",
+    "@type": ["Bakery", "CafeOrCoffeeShop"],
+    "@id": "https://bryansalguero554-create.github.io/ofelee/#negozio",
     "name": "Pasticceria & Caffetteria L'Ôfelee",
+    "url": "https://bryansalguero554-create.github.io/ofelee/",
+    "description": "Pasticceria artigianale e caffetteria a Merate: colazioni, pasticceria mignon, torte su ordinazione, panettoni e colombe artigianali.",
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Pasticceria+L%27Ofelee+Via+Arlati+2+Merate",
+    "areaServed": ["Merate", "Brianza", "Provincia di Lecco"],
     "legalName": "L'Ofelee di Mingotti Silvia",
-    "image": "img/hero-bg.jpg",
+    "image": ["https://bryansalguero554-create.github.io/ofelee/img/og-image.jpg", "https://bryansalguero554-create.github.io/ofelee/img/hero-bg.jpg"],
+    "logo": "https://bryansalguero554-create.github.io/ofelee/img/icon-512.png",
     "telephone": "+39 039 990 0514",
     "priceRange": "€€",
     "servesCuisine": "Pasticceria italiana",
@@ -47,8 +68,101 @@
     ],
     "sameAs": ["https://www.instagram.com/pasticceria.ofelee.merate/"],
     "acceptsReservations": "False",
-    "paymentAccepted": "Contanti, Carte, Contactless"
+    "paymentAccepted": "Contanti, Carte, Contactless",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Le nostre specialità",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "La Colazione", "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Croissant farciti" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brioche artigianali" } } ] },
+        { "@type": "OfferCatalog", "name": "Pasticceria Mignon", "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cannoncini" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Bignè" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Tartellette alla frutta" } } ] },
+        { "@type": "OfferCatalog", "name": "Torte & Cerimonie", "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Torte personalizzate per compleanni e cerimonie" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Millefoglie" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Saint Honoré" } } ] },
+        { "@type": "OfferCatalog", "name": "I Grandi Lievitati", "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Panettone artigianale" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Colomba artigianale" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Chiacchiere di Carnevale" } } ] }
+      ]
+    }
   }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come posso ordinare una torta o un vassoio di pasticceria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basta una telefonata allo 039 990 0514 negli orari di apertura, oppure passare in negozio. Insieme scegliamo gusti, dimensioni, decorazioni e giorno del ritiro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Con quanto anticipo devo ordinare una torta personalizzata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consigliamo di ordinare con almeno 3 giorni di anticipo. Per vassoi e torte della domenica è meglio prenotare per tempo: è la mattina più richiesta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando si trovano panettone, colomba e chiacchiere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il panettone artigianale da novembre all'Epifania, le chiacchiere durante il Carnevale ambrosiano e la colomba nel periodo di Pasqua. Le quantità sono limitate: prenotare è il modo più sicuro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Siete aperti il lunedì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, il lunedì è il nostro giorno di chiusura. Da martedì a sabato siamo aperti 07:00–12:30 e 15:00–19:30, la domenica 07:30–13:00."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può fare colazione seduti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì: abbiamo tavolini all'interno per gustare brioche, croissant e caffè con calma. Tutti i prodotti sono disponibili anche da asporto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ho allergie o intolleranze: come posso fare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gli ingredienti indicati sul sito sono orientativi. Chiedi sempre conferma in negozio o al telefono prima di ordinare: ti diremo con precisione cosa contiene ogni dolce."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è parcheggio? Il negozio è accessibile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, c'è un parcheggio comodo nelle vicinanze, ideale per il ritiro rapido degli ordini, e l'ingresso è accessibile alle persone con disabilità."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali pagamenti accettate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contanti, carte e pagamenti contactless / NFC con smartphone."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -125,7 +239,7 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media"><img class="crop-hero-bg" src="img/hero-bg.jpg" alt="Il banco dei dolci della pasticceria L'Ôfelee"></div>
+      <div class="hero-media"><img class="crop-hero-bg" src="img/hero-bg.jpg" width="1376" height="768" fetchpriority="high" alt="Il banco dei dolci della pasticceria L'Ôfelee a Merate"></div>
       <div class="hero-overlay"></div>
       <div class="container hero-content">
         <p class="eyebrow">Merate · dal laboratorio al banco, ogni giorno</p>
@@ -146,7 +260,8 @@
     </section>
 
     <!-- ============ PUNTI DI FORZA ============ -->
-    <section class="strengths" aria-label="Perché sceglierci">
+    <section class="strengths" aria-labelledby="strengths-title">
+      <h2 id="strengths-title" class="visually-hidden">Perché sceglierci</h2>
       <div class="container strengths-grid">
         <div class="strength">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4 3-6 6-6 9a6 6 0 0 0 12 0c0-3-2-6-6-9Z"/><path d="M12 12v6"/></svg>
@@ -195,7 +310,7 @@
           </div>
           <div class="cards">
             <article class="card" data-product="croissant">
-              <div class="card-img"><img class="crop-croissant" src="img/croissant.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-croissant" src="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Croissant farciti</h3>
                 <p>Sfoglia bicolore, farcita al momento.</p>
@@ -204,7 +319,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="brioche">
-              <div class="card-img"><img class="crop-brioche" src="img/brioche.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-brioche" src="img/brioche.jpg" data-fallback="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Brioche artigianali</h3>
                 <p>Lunga lievitazione, burro e profumo di forno.</p>
@@ -213,7 +328,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="caffe">
-              <div class="card-img"><img class="crop-caffe" src="img/caffe.jpg" data-fallback="img/colazione.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-caffe" src="img/caffe.jpg" data-fallback="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Caffetteria</h3>
                 <p>Espresso, cappuccino e cioccolata calda.</p>
@@ -231,7 +346,7 @@
           </div>
           <div class="cards">
             <article class="card" data-product="cannoncini">
-              <div class="card-img"><img class="crop-cannoncini" src="img/cannoncini.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-cannoncini" src="img/cannoncini.jpg" data-fallback="img/mignon.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Cannoncini</h3>
                 <p>Sfoglia croccante e crema appena fatta.</p>
@@ -240,7 +355,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="bigne">
-              <div class="card-img"><img class="crop-bigne" src="img/bigne.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-bigne" src="img/bigne.jpg" data-fallback="img/mignon.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Bignè</h3>
                 <p>Pasta choux, chantilly e cioccolato.</p>
@@ -249,7 +364,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="tartellette">
-              <div class="card-img"><img class="crop-tartellette" src="img/tartellette.jpg" data-fallback="img/mignon.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-tartellette" src="img/tartellette.jpg" data-fallback="img/mignon.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Tartellette alla frutta</h3>
                 <p>Frolla friabile e frutti di bosco.</p>
@@ -268,7 +383,7 @@
           </div>
           <div class="cards">
             <article class="card" data-product="millefoglie">
-              <div class="card-img"><img class="crop-millefoglie" src="img/millefoglie.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-millefoglie" src="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Millefoglie</h3>
                 <p>Sfoglia, chantilly, fragole e caramello.</p>
@@ -277,7 +392,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="saint-honore">
-              <div class="card-img"><img class="crop-saint-honore" src="img/saint-honore.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-saint-honore" src="img/saint-honore.jpg" data-fallback="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Saint Honoré</h3>
                 <p>Bignè caramellati su base di sfoglia.</p>
@@ -286,7 +401,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="crostata">
-              <div class="card-img"><img class="crop-crostata" src="img/crostata.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-crostata" src="img/crostata.jpg" data-fallback="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Crostate di frutta fresca</h3>
                 <p>Frolla, crema e fragole di stagione.</p>
@@ -295,7 +410,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="torta-compleanno">
-              <div class="card-img"><img class="crop-torta-compleanno" src="img/torta-compleanno.jpg" data-fallback="img/torte.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-torta-compleanno" src="img/torta-compleanno.jpg" data-fallback="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <h3>Torte personalizzate</h3>
                 <p>Gusti e decorazioni su misura.</p>
@@ -315,7 +430,7 @@
           </div>
           <div class="cards">
             <article class="card" data-product="panettone" data-season="natale">
-              <div class="card-img"><img class="crop-panettone" src="img/panettone.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-panettone" src="img/panettone.jpg" data-fallback="img/lievitati.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Novembre – Gennaio</span>
                 <h3>Panettone artigianale</h3>
@@ -325,7 +440,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="chiacchiere" data-season="carnevale">
-              <div class="card-img"><img class="crop-chiacchiere" src="img/chiacchiere.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-chiacchiere" src="img/chiacchiere.jpg" data-fallback="img/lievitati.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Carnevale</span>
                 <h3>Chiacchiere</h3>
@@ -335,7 +450,7 @@
               <span class="card-more" aria-hidden="true">+</span>
             </article>
             <article class="card" data-product="colomba" data-season="pasqua">
-              <div class="card-img"><img class="crop-colomba" src="img/colomba.jpg" data-fallback="img/lievitati.jpg" alt="" loading="lazy"></div>
+              <div class="card-img"><img class="crop-colomba" src="img/colomba.jpg" data-fallback="img/lievitati.jpg" width="1200" height="896" alt="" loading="lazy"></div>
               <div class="card-body">
                 <span class="badge" data-badge>Pasqua</span>
                 <h3>Colomba artigianale</h3>
@@ -360,22 +475,22 @@
         </header>
         <div class="gallery-grid">
           <figure class="gallery-item" data-product="creazione-numero">
-            <img src="img/creazione-numero.jpg" alt="Torta a forma di numero con frutta fresca" loading="lazy">
+            <img src="img/creazione-numero.jpg" alt="Torta a forma di numero con frutta fresca" width="928" height="1152" loading="lazy">
             <figcaption class="gallery-caption">Torte a numero</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-numero" aria-haspopup="dialog" aria-label="Apri Torte a numero: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-cornetti">
-            <img src="img/creazione-cornetti.jpg" alt="Cornetti bicolore al pistacchio e al lampone" loading="lazy">
+            <img src="img/creazione-cornetti.jpg" alt="Cornetti bicolore al pistacchio e al lampone" width="928" height="1152" loading="lazy">
             <figcaption class="gallery-caption">Cornetti bicolore</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-cornetti" aria-haspopup="dialog" aria-label="Apri Cornetti bicolore: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-cioccolato">
-            <img src="img/creazione-cioccolato.jpg" alt="Cupole al cioccolato con nocciole caramellate" loading="lazy">
+            <img src="img/creazione-cioccolato.jpg" alt="Cupole al cioccolato con nocciole caramellate" width="928" height="1152" loading="lazy">
             <figcaption class="gallery-caption">Cupole al cioccolato</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-cioccolato" aria-haspopup="dialog" aria-label="Apri Cupole al cioccolato: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-frutta">
-            <img src="img/creazione-frutta.jpg" alt="Torta di frutta fresca in scrigno di cioccolato" loading="lazy">
+            <img src="img/creazione-frutta.jpg" alt="Torta di frutta fresca in scrigno di cioccolato" width="928" height="1152" loading="lazy">
             <figcaption class="gallery-caption">Scrigno di frutta</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-frutta" aria-haspopup="dialog" aria-label="Apri Scrigno di frutta: foto e ingredienti"></button>
           </figure>
@@ -424,7 +539,7 @@
     <!-- ============ CHI SIAMO ============ -->
     <section class="section" id="chi-siamo" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="about-media"><img class="crop-laboratorio" src="img/laboratorio.jpg" data-fallback="img/hero-bg.jpg" alt="Il laboratorio della pasticceria"></div>
+        <div class="about-media"><img class="crop-laboratorio" src="img/laboratorio.jpg" data-fallback="img/hero-bg.jpg" width="928" height="1152" loading="lazy" alt="Il laboratorio della pasticceria L'Ôfelee"></div>
         <div class="about-text">
           <p class="eyebrow">Il nostro nome</p>
           <h2 id="about-title">Chi è l'Ôfelee?</h2>
@@ -473,6 +588,51 @@
         <div class="service">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="4.5" r="1.5"/><path d="M11 7v6h5l2 5"/><path d="M8 11a5 5 0 1 0 6 7"/></svg>
           <span>Accesso disabili</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DOMANDE FREQUENTI ============ -->
+    <section class="section section-tight" id="domande" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Prima di passare</p>
+          <h2 id="faq-title">Domande frequenti</h2>
+          <p>Le risposte alle domande che ci fate più spesso al banco e al telefono.</p>
+        </header>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Come posso ordinare una torta o un vassoio di pasticceria?</summary>
+            <div class="faq-answer"><p>Basta una telefonata al <a href="tel:+390399900514">039 990 0514</a> negli orari di apertura, oppure passare in negozio. Insieme scegliamo gusti, dimensioni, decorazioni e giorno del ritiro.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Con quanto anticipo devo ordinare una torta personalizzata?</summary>
+            <div class="faq-answer"><p>Consigliamo di ordinare con almeno <strong>3 giorni</strong> di anticipo. Per vassoi e torte della domenica è meglio prenotare per tempo: è la mattina più richiesta.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Quando si trovano panettone, colomba e chiacchiere?</summary>
+            <div class="faq-answer"><p>Il panettone artigianale da novembre all'Epifania, le chiacchiere durante il Carnevale ambrosiano e la colomba nel periodo di Pasqua. Le quantità sono limitate: prenotare è il modo più sicuro.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Siete aperti il lunedì?</summary>
+            <div class="faq-answer"><p>No, il lunedì è il nostro giorno di chiusura. Da martedì a sabato siamo aperti 07:00–12:30 e 15:00–19:30, la domenica 07:30–13:00. <a href="#orari">Vedi tutti gli orari</a>.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Si può fare colazione seduti?</summary>
+            <div class="faq-answer"><p>Sì: abbiamo tavolini all'interno per gustare brioche, croissant e caffè con calma. Tutti i prodotti sono disponibili anche da asporto.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Ho allergie o intolleranze: come posso fare?</summary>
+            <div class="faq-answer"><p>Gli ingredienti indicati sul sito sono orientativi. Chiedi sempre conferma in negozio o al telefono prima di ordinare: ti diremo con precisione cosa contiene ogni dolce.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>C'è parcheggio? Il negozio è accessibile?</summary>
+            <div class="faq-answer"><p>Sì, c'è un parcheggio comodo nelle vicinanze, ideale per il ritiro rapido degli ordini, e l'ingresso è accessibile alle persone con disabilità.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Quali pagamenti accettate?</summary>
+            <div class="faq-answer"><p>Contanti, carte e pagamenti contactless / NFC con smartphone.</p></div>
+          </details>
         </div>
       </div>
     </section>
@@ -543,6 +703,7 @@
         <!-- TODO: sostituire con l'URL diretto della pagina (facebook.com/nomepagina) -->
         <a href="https://www.facebook.com/search/top?q=Pasticceria%20%26%20Caffetteria%20L%27%C3%94felee" target="_blank" rel="noopener noreferrer">Pagina Facebook</a>
         <a href="https://www.instagram.com/pasticceria.ofelee.merate/" target="_blank" rel="noopener noreferrer">Instagram @pasticceria.ofelee.merate</a>
+        <a href="#domande">Domande frequenti</a>
         <button type="button" class="link-btn" data-open-dialog="privacy-dialog">Privacy Policy</button>
         <button type="button" class="link-btn" data-open-dialog="cookie-dialog">Cookie Policy</button>
       </div>
@@ -616,7 +777,7 @@
   </dialog>
 
   <!-- Barra azioni rapide (solo smartphone) -->
-  <div class="mobile-bar" aria-label="Azioni rapide">
+  <nav class="mobile-bar" aria-label="Azioni rapide">
     <a href="tel:+390399900514">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
       Chiama
@@ -626,7 +787,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
       Mappa
     </a>
-  </div>
+  </nav>
 
   <script src="js/main.js"></script>
 </body>
