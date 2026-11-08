@@ -32,7 +32,7 @@
   <link rel="icon" href="img/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preload" href="img/hero-bg.jpg" as="image" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-bg-sm.webp 800w, img/hero-bg.webp 1376w" imagesizes="(max-width: 900px) 100vw, 52vw" fetchpriority="high">
   <link rel="preload" href="fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
@@ -210,6 +210,11 @@
     </p>
   </div>
 
+  <!-- Barra stagionale: compare da sola a Natale, Carnevale e Pasqua -->
+  <aside class="season-bar" data-season-bar aria-label="Avviso di stagione" hidden>
+    <p><span data-season-bar-text></span> <a href="#torte" data-season-bar-link>Prenota</a></p>
+  </aside>
+
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
     <div class="header-inner">
@@ -250,7 +255,7 @@
         <p class="open-status" data-open-status>&nbsp;</p>
       </div>
       <div class="hero-media">
-        <img class="crop-hero-bg" src="img/hero-bg.jpg" width="1376" height="768" fetchpriority="high" alt="Il bancone in marmo con le paste in vetrina e la scritta Dolci sulla parete verde">
+        <picture><source type="image/webp" srcset="img/hero-bg-sm.webp 800w, img/hero-bg.webp 1376w" sizes="(max-width: 900px) 100vw, 52vw"><img class="crop-hero-bg" src="img/hero-bg.jpg" width="1376" height="768" fetchpriority="high" alt="Il bancone in marmo con le paste in vetrina e la scritta Dolci sulla parete verde"></picture>
         <a class="hero-seal" href="https://www.google.com/maps/search/?api=1&amp;query=Pasticceria+L%27Ofelee+Via+Arlati+2+Merate" target="_blank" rel="noopener noreferrer" aria-label="Valutazione 4,6 su 5 su Google, oltre 200 recensioni. Leggi le recensioni">
           <strong>4,6</strong>
           <span class="stars" aria-hidden="true">★★★★★</span>
@@ -278,7 +283,7 @@
           <p class="panel-intro">Brioche e croissant sfornati ogni mattina, con un caffè fatto bene. Ai tavolini o da portare via.</p>
           <div class="cards">
             <article class="card" data-product="croissant">
-              <div class="card-img"><img class="crop-croissant" src="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/colazione-sm.webp 800w, img/colazione.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-croissant" src="img/colazione.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Croissant farciti</h3>
                 <p>Sfoglia bicolore, farcita al momento</p>
@@ -286,7 +291,7 @@
               <button type="button" class="card-hit" data-open-product="croissant" aria-haspopup="dialog" aria-label="Apri Croissant farciti: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="brioche">
-              <div class="card-img"><img class="crop-brioche" src="img/brioche.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/brioche-sm.webp 800w, img/brioche.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-brioche" src="img/brioche.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Brioche artigianali</h3>
                 <p>Lunga lievitazione, burro e forno</p>
@@ -294,7 +299,7 @@
               <button type="button" class="card-hit" data-open-product="brioche" aria-haspopup="dialog" aria-label="Apri Brioche artigianali: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="caffe">
-              <div class="card-img"><img class="crop-caffe" src="img/caffe.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/caffe-sm.webp 800w, img/caffe.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-caffe" src="img/caffe.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Caffetteria</h3>
                 <p>Espresso, cappuccino, cioccolata</p>
@@ -307,7 +312,7 @@
           <p class="panel-intro">La pasticceria fresca per cui ci conoscono: per il vassoio della domenica, un pranzo in famiglia o un regalo. <a href="#torte">Prenota il vassoio</a> e lo trovi pronto.</p>
           <div class="cards">
             <article class="card" data-product="cannoncini">
-              <div class="card-img"><img class="crop-cannoncini" src="img/cannoncini.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/cannoncini-sm.webp 800w, img/cannoncini.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-cannoncini" src="img/cannoncini.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Cannoncini</h3>
                 <p>Riempiti di crema al momento</p>
@@ -315,7 +320,7 @@
               <button type="button" class="card-hit" data-open-product="cannoncini" aria-haspopup="dialog" aria-label="Apri Cannoncini: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="bigne">
-              <div class="card-img"><img class="crop-bigne" src="img/bigne.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/bigne-sm.webp 800w, img/bigne.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-bigne" src="img/bigne.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Bignè</h3>
                 <p>Pasta choux, chantilly, cioccolato</p>
@@ -323,7 +328,7 @@
               <button type="button" class="card-hit" data-open-product="bigne" aria-haspopup="dialog" aria-label="Apri Bignè: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="tartellette">
-              <div class="card-img"><img class="crop-tartellette" src="img/tartellette.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/tartellette-sm.webp 800w, img/tartellette.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-tartellette" src="img/tartellette.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Tartellette</h3>
                 <p>Frolla e frutti di bosco</p>
@@ -336,7 +341,7 @@
           <p class="panel-intro">Per compleanni, battesimi, comunioni, lauree e anniversari. Ogni torta si prepara su ordinazione: <a href="#torte">ordinala per telefono</a>.</p>
           <div class="cards">
             <article class="card" data-product="millefoglie">
-              <div class="card-img"><img class="crop-millefoglie" src="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/torte-sm.webp 800w, img/torte.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-millefoglie" src="img/torte.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Millefoglie</h3>
                 <p>Sfoglia, chantilly, fragole</p>
@@ -344,7 +349,7 @@
               <button type="button" class="card-hit" data-open-product="millefoglie" aria-haspopup="dialog" aria-label="Apri Millefoglie: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="saint-honore">
-              <div class="card-img"><img class="crop-saint-honore" src="img/saint-honore.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/saint-honore-sm.webp 800w, img/saint-honore.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-saint-honore" src="img/saint-honore.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Saint Honoré</h3>
                 <p>Bignè caramellati e chantilly</p>
@@ -352,7 +357,7 @@
               <button type="button" class="card-hit" data-open-product="saint-honore" aria-haspopup="dialog" aria-label="Apri Saint Honoré: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="crostata">
-              <div class="card-img"><img class="crop-crostata" src="img/crostata.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/crostata-sm.webp 800w, img/crostata.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-crostata" src="img/crostata.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Crostata di frutta</h3>
                 <p>Frolla, crema, fragole</p>
@@ -360,7 +365,7 @@
               <button type="button" class="card-hit" data-open-product="crostata" aria-haspopup="dialog" aria-label="Apri Crostata di frutta: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="torta-compleanno">
-              <div class="card-img"><img class="crop-torta-compleanno" src="img/torta-compleanno.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/torta-compleanno-sm.webp 800w, img/torta-compleanno.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-torta-compleanno" src="img/torta-compleanno.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                 <h3>Torta su misura</h3>
                 <p>Gusti e decorazioni per la festa</p>
@@ -374,7 +379,7 @@
           <p class="season-banner" data-season-banner hidden></p>
           <div class="cards">
             <article class="card" data-product="panettone" data-season="natale">
-              <div class="card-img"><img class="crop-panettone" src="img/panettone.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/panettone-sm.webp 800w, img/panettone.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-panettone" src="img/panettone.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                   <span class="badge" data-badge>Novembre – Epifania</span>
                 <h3>Panettone</h3>
@@ -383,7 +388,7 @@
               <button type="button" class="card-hit" data-open-product="panettone" aria-haspopup="dialog" aria-label="Apri Panettone: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="chiacchiere" data-season="carnevale">
-              <div class="card-img"><img class="crop-chiacchiere" src="img/chiacchiere.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/chiacchiere-sm.webp 800w, img/chiacchiere.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-chiacchiere" src="img/chiacchiere.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                   <span class="badge" data-badge>Carnevale ambrosiano</span>
                 <h3>Chiacchiere</h3>
@@ -392,7 +397,7 @@
               <button type="button" class="card-hit" data-open-product="chiacchiere" aria-haspopup="dialog" aria-label="Apri Chiacchiere: foto e ingredienti"></button>
             </article>
             <article class="card" data-product="colomba" data-season="pasqua">
-              <div class="card-img"><img class="crop-colomba" src="img/colomba.jpg" width="1200" height="896" alt="" loading="lazy"></div>
+              <div class="card-img"><picture><source type="image/webp" srcset="img/colomba-sm.webp 800w, img/colomba.webp 1200w" sizes="(max-width: 560px) 46vw, 300px"><img class="crop-colomba" src="img/colomba.jpg" width="1200" height="896" alt="" loading="lazy"></picture></div>
               <div class="card-body">
                   <span class="badge" data-badge>Pasqua</span>
                 <h3>Colomba</h3>
@@ -414,22 +419,22 @@
         </header>
         <div class="gallery-grid">
           <figure class="gallery-item" data-product="creazione-numero">
-            <div class="gallery-img"><img src="img/creazione-numero.jpg" width="928" height="1152" alt="Torta a forma di numero con frutta fresca" loading="lazy"></div>
+            <div class="gallery-img"><picture><source type="image/webp" srcset="img/creazione-numero-sm.webp 640w, img/creazione-numero.webp 928w" sizes="(max-width: 1080px) 46vw, 290px"><img src="img/creazione-numero.jpg" width="928" height="1152" alt="Torta a forma di numero con frutta fresca" loading="lazy"></picture></div>
             <figcaption>Torte a numero</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-numero" aria-haspopup="dialog" aria-label="Apri Torte a numero: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-cornetti">
-            <div class="gallery-img"><img src="img/creazione-cornetti.jpg" width="928" height="1152" alt="Cornetti bicolore al pistacchio e al lampone" loading="lazy"></div>
+            <div class="gallery-img"><picture><source type="image/webp" srcset="img/creazione-cornetti-sm.webp 640w, img/creazione-cornetti.webp 928w" sizes="(max-width: 1080px) 46vw, 290px"><img src="img/creazione-cornetti.jpg" width="928" height="1152" alt="Cornetti bicolore al pistacchio e al lampone" loading="lazy"></picture></div>
             <figcaption>Cornetti bicolore</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-cornetti" aria-haspopup="dialog" aria-label="Apri Cornetti bicolore: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-cioccolato">
-            <div class="gallery-img"><img src="img/creazione-cioccolato.jpg" width="928" height="1152" alt="Cupole al cioccolato con nocciole caramellate" loading="lazy"></div>
+            <div class="gallery-img"><picture><source type="image/webp" srcset="img/creazione-cioccolato-sm.webp 640w, img/creazione-cioccolato.webp 928w" sizes="(max-width: 1080px) 46vw, 290px"><img src="img/creazione-cioccolato.jpg" width="928" height="1152" alt="Cupole al cioccolato con nocciole caramellate" loading="lazy"></picture></div>
             <figcaption>Cupole al cioccolato</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-cioccolato" aria-haspopup="dialog" aria-label="Apri Cupole al cioccolato: foto e ingredienti"></button>
           </figure>
           <figure class="gallery-item" data-product="creazione-frutta">
-            <div class="gallery-img"><img src="img/creazione-frutta.jpg" width="928" height="1152" alt="Torta di frutta fresca in scrigno di cioccolato" loading="lazy"></div>
+            <div class="gallery-img"><picture><source type="image/webp" srcset="img/creazione-frutta-sm.webp 640w, img/creazione-frutta.webp 928w" sizes="(max-width: 1080px) 46vw, 290px"><img src="img/creazione-frutta.jpg" width="928" height="1152" alt="Torta di frutta fresca in scrigno di cioccolato" loading="lazy"></picture></div>
             <figcaption>Scrigno di frutta</figcaption>
             <button type="button" class="card-hit" data-open-product="creazione-frutta" aria-haspopup="dialog" aria-label="Apri Scrigno di frutta: foto e ingredienti"></button>
           </figure>
@@ -456,18 +461,71 @@
           <p class="order-call-label">Si prenota con una telefonata</p>
           <a class="order-call-number" href="tel:+390399900514">039 990 0514</a>
           <p class="open-status" data-open-status>&nbsp;</p>
-          <a class="btn btn-accent btn-call" href="tel:+390399900514">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
-            Chiama ora
-          </a>
-          <div class="order-call-tips">
-            <p>Per fare prima, tieni pronti:</p>
-            <ul>
-              <li>il dolce che desideri e per quante persone</li>
-              <li>il giorno del ritiro</li>
-              <li>gusti, scritta e allergie</li>
-            </ul>
-          </div>
+          <p class="order-proof"><strong>4,6</strong> su Google, oltre 200 recensioni</p>
+
+          <!-- Prepara la telefonata: nulla viene inviato o salvato,
+               il promemoria resta sul telefono di chi lo compila. -->
+          <form class="planner" data-planner novalidate aria-labelledby="planner-title">
+            <h3 id="planner-title" class="planner-title">Prepara la telefonata</h3>
+            <p class="planner-intro">Quattro scelte e hai tutto quello che ci serve sapere.</p>
+
+            <fieldset class="planner-step">
+              <legend>Per quale occasione?</legend>
+              <div class="chips">
+                <label><input type="radio" name="occasione" value="un compleanno"><span>Compleanno</span></label>
+                <label><input type="radio" name="occasione" value="un battesimo o una comunione"><span>Battesimo o comunione</span></label>
+                <label><input type="radio" name="occasione" value="una laurea"><span>Laurea</span></label>
+                <label><input type="radio" name="occasione" value="un anniversario"><span>Anniversario</span></label>
+                <label><input type="radio" name="occasione" value="una festa o un evento"><span>Festa o evento</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="planner-step">
+              <legend>Cosa desideri?</legend>
+              <div class="chips">
+                <label><input type="radio" name="dolce" value="una torta personalizzata"><span>Torta personalizzata</span></label>
+                <label><input type="radio" name="dolce" value="una millefoglie"><span>Millefoglie</span></label>
+                <label><input type="radio" name="dolce" value="una Saint Honoré"><span>Saint Honoré</span></label>
+                <label><input type="radio" name="dolce" value="una crostata di frutta"><span>Crostata di frutta</span></label>
+                <label><input type="radio" name="dolce" value="un vassoio di mignon"><span>Vassoio di mignon</span></label>
+              </div>
+            </fieldset>
+
+            <div class="planner-row">
+              <div class="planner-step">
+                <label class="planner-label" for="pl-persone">Per quante persone?</label>
+                <div class="stepper">
+                  <button type="button" data-step="-2" aria-label="Due persone in meno">−</button>
+                  <input id="pl-persone" name="persone" type="number" inputmode="numeric" min="2" max="200" step="1" value="12">
+                  <button type="button" data-step="2" aria-label="Due persone in più">+</button>
+                </div>
+              </div>
+              <div class="planner-step">
+                <label class="planner-label" for="pl-data">Giorno del ritiro</label>
+                <input id="pl-data" name="data" type="date" aria-describedby="pl-data-hint">
+                <p class="planner-hint" id="pl-data-hint" data-date-hint>Almeno 3 giorni da oggi. Il lunedì siamo chiusi.</p>
+              </div>
+            </div>
+
+            <div class="planner-step">
+              <label class="planner-label" for="pl-note">Scritta, gusti o allergie <span>(facoltativo)</span></label>
+              <input id="pl-note" name="note" type="text" maxlength="140" autocomplete="off" placeholder="Es. «Buon compleanno Giulia», senza frutta secca">
+            </div>
+
+            <div class="memo" aria-live="polite">
+              <p class="memo-label">Il tuo promemoria</p>
+              <p class="memo-text" data-memo>Scegli l'occasione e il dolce: qui compare cosa dirci al telefono.</p>
+            </div>
+
+            <div class="planner-actions">
+              <a class="btn btn-accent btn-call" href="tel:+390399900514">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+                Chiama e leggi il promemoria
+              </a>
+              <button type="button" class="btn btn-line btn-small" data-copy-memo>Copia il promemoria</button>
+            </div>
+            <p class="planner-privacy">Il promemoria non viene inviato né salvato: resta su questo dispositivo.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -475,7 +533,7 @@
     <!-- ============ CHI SIAMO ============ -->
     <section class="section about" id="chi-siamo" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="about-media"><img class="crop-laboratorio" src="img/laboratorio.jpg" data-fallback="img/hero-bg.jpg" width="928" height="1152" loading="lazy" alt="Mani del pasticcere che sistemano le tartellette sul banco del laboratorio"></div>
+        <div class="about-media"><picture><source type="image/webp" srcset="img/laboratorio-sm.webp 640w, img/laboratorio.webp 928w" sizes="(max-width: 900px) 90vw, 480px"><img class="crop-laboratorio" src="img/laboratorio.jpg" data-fallback="img/hero-bg.jpg" width="928" height="1152" loading="lazy" alt="Mani del pasticcere che sistemano le tartellette sul banco del laboratorio"></picture></div>
         <div class="about-text">
           <h2 id="about-title">Perché ci chiamiamo così</h2>
           <p class="lead">Nel dialetto milanese e brianzolo l'<em>ôfelee</em> è il pasticcere. Abbiamo scelto questo nome perché racconta esattamente cosa facciamo.</p>

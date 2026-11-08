@@ -266,6 +266,18 @@ tabs.forEach((tab, i) => {
     }
   });
 
+  const bar = document.querySelector("[data-season-bar]");
+  const barCopy = {
+    natale: ["È tempo di panettone artigianale: le quantità sono limitate.", "Prenota il tuo panettone"],
+    carnevale: ["Sono arrivate le chiacchiere di Carnevale, fresche ogni giorno.", "Ordina un vassoio"],
+    pasqua: ["Colombe artigianali per Pasqua: le quantità sono limitate.", "Prenota la tua colomba"],
+  };
+  if (active && bar) {
+    bar.querySelector("[data-season-bar-text]").textContent = barCopy[active][0];
+    bar.querySelector("[data-season-bar-link]").textContent = barCopy[active][1];
+    bar.hidden = false;
+  }
+
   const banner = document.querySelector("[data-season-banner]");
   if (active && banner) {
     banner.textContent = messages[active];
@@ -275,6 +287,97 @@ tabs.forEach((tab, i) => {
     const card = panel.querySelector(`[data-season="${active}"]`);
     card.parentElement.prepend(card);
   }
+})();
+
+/* ---------- Prepara la telefonata ----------
+   Compone un promemoria da leggere al telefono. Niente viene inviato
+   né salvato: tutto resta nella pagina. */
+(function planner() {
+  const form = document.querySelector("[data-planner]");
+  if (!form) return;
+  const memo = form.querySelector("[data-memo]");
+  const people = form.querySelector("#pl-persone");
+  const date = form.querySelector("#pl-data");
+  const hint = form.querySelector("[data-date-hint]");
+  const note = form.querySelector("#pl-note");
+  const defaultHint = hint.textContent;
+  const MIN_DAYS = 3;
+
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const fromIso = (v) => { const [y, m, d] = v.split("-").map(Number); return new Date(y, m - 1, d); };
+  const isOpen = (d) => CONFIG.hours[d.getDay()].length > 0;
+
+  // primo giorno utile: oggi + 3, saltando i giorni di chiusura
+  const now = nowInRome();
+  let first = addDays(new Date(now.year, now.month - 1, now.day), MIN_DAYS);
+  while (!isOpen(first)) first = addDays(first, 1);
+  date.min = iso(first);
+
+  const longDate = (d) => new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long" }).format(d);
+
+  function checkDate() {
+    date.removeAttribute("aria-invalid");
+    hint.classList.remove("is-error");
+    hint.textContent = defaultHint;
+    if (!date.value) return null;
+    const d = fromIso(date.value);
+    let problem = "";
+    if (d < first) problem = `Per preparare tutto con cura servono almeno 3 giorni: il primo giorno utile è ${longDate(first)}.`;
+    else if (!isOpen(d)) problem = "Il lunedì siamo chiusi: scegli un altro giorno.";
+    if (problem) {
+      date.setAttribute("aria-invalid", "true");
+      hint.classList.add("is-error");
+      hint.textContent = problem;
+      return null;
+    }
+    const slots = CONFIG.hours[d.getDay()];
+    hint.textContent = `Ritiro ${longDate(d)}: ${slots.map(([a, b]) => `${a}–${b}`).join(" oppure ")}.`;
+    return d;
+  }
+
+  function update() {
+    const data = new FormData(form);
+    const occasione = data.get("occasione");
+    const dolce = data.get("dolce");
+    const n = Math.max(2, Math.min(200, parseInt(people.value, 10) || 0));
+    const d = checkDate();
+    if (!occasione && !dolce) {
+      memo.textContent = "Scegli l'occasione e il dolce: qui compare cosa dirci al telefono.";
+      memo.classList.remove("is-filled");
+      return;
+    }
+    let text = `Buongiorno, vorrei ordinare ${dolce || "un dolce"}`;
+    if (occasione) text += ` per ${occasione}`;
+    text += `, per ${n} persone`;
+    if (d) text += `, con ritiro ${longDate(d)}`;
+    text += ".";
+    const extra = note.value.trim();
+    if (extra) text += ` Note: ${extra}.`;
+    memo.textContent = text;
+    memo.classList.add("is-filled");
+  }
+
+  form.addEventListener("input", update);
+  form.addEventListener("change", update);
+  form.addEventListener("submit", (e) => e.preventDefault());
+  form.querySelectorAll("[data-step]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const v = (parseInt(people.value, 10) || 0) + Number(btn.dataset.step);
+      people.value = Math.max(2, Math.min(200, v));
+      update();
+    });
+  });
+
+  const copyBtn = form.querySelector("[data-copy-memo]");
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(memo.textContent);
+      copyBtn.textContent = "Promemoria copiato";
+    } catch {
+      copyBtn.textContent = "Copia non riuscita: tieni aperta questa pagina";
+    }
+    setTimeout(() => { copyBtn.textContent = "Copia il promemoria"; }, 2500);
+  });
 })();
 
 /* ---------- Stato aperto/chiuso e giorno corrente ---------- */
@@ -401,7 +504,7 @@ let openedFrom = null;
 function fillProduct(key) {
   const p = PRODUCTS[key];
   if (!p) return false;
-  pdImg.src = p.img;
+  pdImg.src = p.img.replace(/\.jpg$/, ".webp");
   pdImg.alt = p.title;
   productDialog.querySelector("[data-pd-kicker]").textContent = p.kicker;
   productDialog.querySelector("[data-pd-title]").textContent = p.title;

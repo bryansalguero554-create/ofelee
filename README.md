@@ -8,7 +8,10 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 - **Hero** con payoff, pulsanti "Prenota una torta" / "Scopri le specialità", valutazione Google e stato "Aperto ora / Chiuso" in tempo reale (ora di Roma).
 - **La vetrina** (specialità) a schede, con i dolci sotto campane di vetro e cartellini: Colazione, Pasticceria Mignon, Torte & Cerimonie, Grandi Lievitati.
   I lievitati si attivano da soli in base al periodo (Natale, Carnevale ambrosiano, Pasqua).
-- **Ordina la tua torta**: prenotazione telefonica con pulsante "Chiamaci ora" e stato aperto/chiuso in tempo reale.
+- **Ordina la tua torta**: prenotazione telefonica con stato aperto/chiuso in tempo reale e **"Prepara la telefonata"**:
+  occasione, dolce, persone e giorno di ritiro (minimo 3 giorni, lunedì escluso) compongono un promemoria da leggere al telefono.
+  Nulla viene inviato o salvato.
+- **Barra stagionale** in cima alla pagina (panettone, chiacchiere, colomba), attiva solo nei periodi giusti.
 - **Chi siamo**, servizi, **orari** con il giorno corrente evidenziato, **mappa** e indicazioni.
 - **Animazione di caricamento**: un cupcake si riempie di panna, arriva la ciliegina e il sito si apre (più breve dalla seconda pagina; disattivata con "riduci movimento").
 - **Pagina 404** (`404.html`) con il cupcake morsicato, autonoma e funzionante a qualsiasi percorso.
@@ -30,6 +33,9 @@ o caricare la cartella su qualsiasi hosting (Netlify, GitHub Pages, hosting trad
 4. **Facebook**: il link nel footer apre la ricerca della pagina; sostituirlo con l'URL diretto (`facebook.com/...`).
 
 ## Foto in `img/`
+Ogni foto `.jpg` ha due copie WebP (`nome.webp` e `nome-sm.webp` per smartphone), usate automaticamente dal browser.
+Quando si sostituisce una foto, rigenerarle (ad es. con `cwebp -q 78`), altrimenti resta visibile la versione vecchia.
+
 Bastano **5 foto** per avere il sito completo:
 
 | File | Contenuto | Dove compare |
