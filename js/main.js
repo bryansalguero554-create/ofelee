@@ -30,7 +30,7 @@ const DAY_NAMES = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", 
 
   let seen = false;
   try { seen = sessionStorage.getItem("ofelee-loader") === "1"; } catch { /* storage non disponibile */ }
-  const minVisible = seen ? 300 : 1200; // ms dall'inizio della navigazione
+  const minVisible = seen ? 250 : 750; // ms dall'inizio della navigazione
 
   const finish = () => {
     const wait = Math.max(0, minVisible - performance.now());
@@ -39,7 +39,7 @@ const DAY_NAMES = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", 
       setTimeout(() => {
         loader.classList.add("is-hidden");
         setTimeout(() => loader.remove(), 600);
-      }, seen ? 350 : 950);
+      }, seen ? 300 : 700);
       try { sessionStorage.setItem("ofelee-loader", "1"); } catch { /* storage non disponibile */ }
     }, wait);
   };

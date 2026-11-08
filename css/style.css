@@ -50,9 +50,9 @@
   --ease: cubic-bezier(.2, .8, .2, 1);
 
   /* marmo: venature leggere generate in SVG */
-  --marble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0025 .011' numOctaves='5' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .38 0 0 0 0 .33 -3.2 0 0 0 1.75'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 .05 .16 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  --marble: url("../img/marmo.webp");
   /* carta da parati: foglie fucsia e verdi come nel negozio */
-  --leaves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='%23c2185b'%3E%3Cpath d='M30 20c18-6 34 4 38 22-18 6-34-4-38-22z'/%3E%3Cpath d='M112 92c14-12 34-10 44 6-14 12-34 10-44-6z'/%3E%3C/g%3E%3Cg fill='%23a9b57a'%3E%3Cpath d='M96 14c4 18-6 34-24 38-4-18 6-34 24-38z'/%3E%3Cpath d='M22 112c18-4 34 6 38 24-18 4-34-6-38-24z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23a9b57a' stroke-width='1.5'%3E%3Cpath d='M30 20c10 8 24 14 38 22M96 14c-8 12-16 24-24 38M112 92c14 2 30 4 44 6M22 112c12 6 26 14 38 24'/%3E%3C/g%3E%3C/svg%3E");
+  --leaves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cdefs%3E%3Cg id='l'%3E%3Cpath d='M0 0C16-20 52-20 70 0C52 20 16 20 0 0Z'/%3E%3Cpath d='M4 0H64' fill='none' stroke='%2323291a' stroke-opacity='.35' stroke-width='1.6'/%3E%3C/g%3E%3C/defs%3E%3Cg fill='%23e0457f'%3E%3Cuse href='%23l' transform='translate(18 52) rotate(-28)'/%3E%3Cuse href='%23l' transform='translate(150 168) rotate(32)'/%3E%3Cuse href='%23l' transform='translate(196 30) rotate(118)'/%3E%3C/g%3E%3Cg fill='%23a9b57a'%3E%3Cuse href='%23l' transform='translate(96 108) rotate(-62)'/%3E%3Cuse href='%23l' transform='translate(24 196) rotate(14)'/%3E%3Cuse href='%23l' transform='translate(170 96) rotate(-8)'/%3E%3Cuse href='%23l' transform='translate(232 214) rotate(-120)'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 *,
@@ -341,7 +341,7 @@ p { margin: 0 0 1em; }
 
 /* ---------- La vetrina ---------- */
 .vetrina {
-  background: var(--marble) center / 900px, var(--marmo);
+  background: linear-gradient(rgba(244, 244, 239, .5), rgba(244, 244, 239, .5)), var(--marble) center / cover, var(--marmo);
   position: relative;
 }
 .vetrina-head {
@@ -539,9 +539,9 @@ p { margin: 0 0 1em; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--leaves) 0 0 / 200px;
-  opacity: .13;
-  mask-image: linear-gradient(100deg, transparent 30%, #000 75%);
+  background: var(--leaves) 0 0 / 260px;
+  opacity: .2;
+  mask-image: linear-gradient(100deg, transparent 25%, #000 80%);
 }
 .order-grid {
   display: grid;
@@ -576,7 +576,8 @@ p { margin: 0 0 1em; }
   padding: clamp(28px, 4vw, 48px);
   background: var(--marmo);
   background-image: var(--marble);
-  background-size: 700px;
+  background-size: cover;
+  background-position: center;
   color: var(--inchiostro);
   border-radius: 999px 999px 18px 18px;
   padding-top: clamp(64px, 8vw, 104px);
@@ -859,8 +860,13 @@ img.img-missing { visibility: hidden; }
   .main-nav .btn { margin-top: 18px; width: 100%; }
 
   .hero { grid-template-columns: 1fr; min-height: 0; }
-  .hero-media { order: -1; aspect-ratio: 4 / 3; max-height: 52svh; width: 100%; }
-  .hero-text { padding: 36px var(--gutter) 56px; }
+  .hero-media { order: -1; aspect-ratio: 16 / 10; max-height: 40svh; width: 100%; }
+  .hero-text { padding: 28px var(--gutter) 48px; }
+  .hero-phon { margin: .6em 0 1.1em; font-size: 1.15rem; }
+  .hero-defs { margin-bottom: 1.6em; gap: .6em; }
+  .hero-defs li { font-size: 1.12rem; }
+  .hero-actions { margin-bottom: 18px; }
+  .hero-actions .btn { flex: 1 1 auto; }
   .hero-word { font-size: clamp(5rem, 31vw, 10rem); }
   .hero-seal { width: 112px; height: 112px; left: auto; right: 16px; bottom: -40px; padding: 10px; z-index: 2; }
   .hero-seal strong { font-size: 2rem; }
